@@ -19,7 +19,7 @@ class NewVisitorTest(unittest.TestCase):
         # He saw that the title of this website is EDU-Match
         self.assertIn('EDU-Match', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('EDU-Match', header_text)
+        self.assertIn('Enter Your Subject', header_text)
 
         inputbox = self.browser.find_element_by_id('id_new_subject')
         self.assertEqual(
@@ -37,10 +37,6 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == 'Statistics in everyday life' for row in rows),
-            "Subject did not appear in table"
-        )
 
         self.fail('Finish the test!')
     # From then, he added the names of subjects that he was not good at anymore

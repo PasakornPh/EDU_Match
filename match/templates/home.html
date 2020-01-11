@@ -4,8 +4,14 @@
     </head>
     <body>
         <h1>Enter Your Subject</h1>
-        <input id="id_new_subject" placeholder="Enter a Subject"/>
+        <form method="POST">
+        <input name="item_subject" id="id_new_subject" placeholder="Enter a Subject" />
+        {% csrf_token %}
+        </form>
+
         <table id="id_list_table">
+            <tr><td>{{ new_subject }}</td></tr>
         </table>
     </body>
 </html>
+
