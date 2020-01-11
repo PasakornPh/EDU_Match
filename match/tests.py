@@ -1,6 +1,9 @@
+from django.urls import resolve
 from django.test import TestCase
+from match.views import home_page
 
-class SmokeTest(TestCase):
+class HomePageTest(TestCase):
 
-    def test_bad_maths(self):
-        self.assertEqual("Statistics in everyday life","General Mathematics")
+    def test_root_url_resolves_to_home_page_view(self):
+        found = resolve('/')
+        self.assertEqual(found.func, home_page)
