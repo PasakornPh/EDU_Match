@@ -1,4 +1,4 @@
-from django.http import HttpResponse
-# Create your views here.
+from django.shortcuts import render
+
 def home_page(request):
-    return HttpResponse('<html><title>EDU-Match</title></html>')
+    return render(request, 'home.html')
