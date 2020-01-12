@@ -8,10 +8,15 @@
         <input name="item_subject" id="id_new_subject" placeholder="Enter a Subject" />
         {% csrf_token %}
         </form>
-
+        {% if User %}
         <table id="id_list_table">
-            <tr><td>{{ new_subject }}</td></tr>
+            {% for new_subject in User.subject.all %}
+                <tr><td>{{ forloop.counter }} : {{ new_subject }}</td></tr>
+            {% endfor %}
+
         </table>
+
+        {% endif %}
     </body>
 </html>
 

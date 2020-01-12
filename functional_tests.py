@@ -19,7 +19,7 @@ class NewVisitorTest(unittest.TestCase):
         # He saw that the title of this website is EDU-Match
         self.assertIn('EDU-Match', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Enter Your Subject', header_text)
+        self.assertIn('Enter Your Subject', heapython3der_text)
 
         inputbox = self.browser.find_element_by_id('id_new_subject')
         self.assertEqual(
