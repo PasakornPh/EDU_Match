@@ -2,19 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/EDU_Match.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EDU_Match.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/functional_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_edu/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,7 +52,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -53,6 +69,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -90,8 +107,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578762531692</updated>
+      <workItem from="1579115187078" duration="6723000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1897" height="261" key="GridCell.Tab.0.bottom" timestamp="1579110971998">
@@ -110,6 +131,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state width="1897" height="261" key="GridCell.Tab.0.right/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971997" />
+    <state x="207" y="32" key="SettingsEditor" timestamp="1579115344094">
+      <screen x="70" y="27" width="1296" height="741" />
+    </state>
+    <state x="207" y="32" key="SettingsEditor/70.27.1296.741@70.27.1296.741" timestamp="1579115344094" />
     <state x="624" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1579105516931">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>

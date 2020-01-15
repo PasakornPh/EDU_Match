@@ -30,6 +30,7 @@ def clean_model(request):
     new_subject_list = request.POST.getlist('new_subject')
     if len(new_subject_list) == 0:
         # Redisplay the question voting form.
+
         return render(request, 'profile.html', {
             'User': User1,
             'error_message': "You didn't select a subject.",

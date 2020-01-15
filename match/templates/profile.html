@@ -32,9 +32,11 @@
             {% for new_subject in User.subject.all %}
 
 
-                <tr><td><input type="checkbox" name="new_subject" id="new_subject{{ forloop.counter }}" value="{{ new_subject.id }}"><label for="new_subject{{ forloop.counter }}">{{ forloop.counter }} : {{ new_subject }}</label><br></td></tr>
+                <tr><td><input type="checkbox" name="new_subject" id="new_subject{{ forloop.counter }}" value="{{ new_subject.id }}"><label for="new_subject{{ forloop.counter }}">{{ forloop.counter }}: {{ new_subject }}</label><br></td></tr>
             {% endfor %}
-                <input type="submit" value="Remove">
+                <button id="id_delete_subject"type="submit">Remove</button>
+                {{ error_message }}
+
                 {% csrf_token %}
             </form>
         </table>

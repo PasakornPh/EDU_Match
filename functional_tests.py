@@ -14,12 +14,12 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Mok has trouble learning. So he went to see the home page
         # of the website that his friend introduced
-        self.browser.get('http://localhost:8000')
+        self.browser.get('http://localhost:8000/home')
 
         # He saw that the title of this website is EDU-Match
-        self.assertIn('EDU-Match', self.browser.title)
-        header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Enter Your Subject', heapython3der_text)
+        self.assertIn('EDU-MATCH', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Matching', header_text)
 
         inputbox = self.browser.find_element_by_id('id_new_subject')
         self.assertEqual(
@@ -38,7 +38,6 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
 
-        self.fail('Finish the test!')
     # From then, he added the names of subjects that he was not good at anymore
 
     # He typed "General Mathematics"
@@ -54,6 +53,44 @@ class NewVisitorTest(unittest.TestCase):
     # He feels like this website very much
 
     # He therefore prepared the stuff to tutor
+
+        # He click on Profile button
+        buttontoprofile = self.browser.find_element_by_id('id_to_profile')
+        buttontoprofile.send_keys(Keys.ENTER)
+        self.browser.get('http://localhost:8000/profile')
+        # He saw that the header of this website is My profile
+        pheader_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('My Profile', pheader_text)
+        # He type his favorite subject
+        # He type "Math2" and "Biology" into the Text box
+        inputbox = self.browser.find_element_by_id('id_new_subject')
+        inputbox.send_keys('Math2')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+        inputbox = self.browser.find_element_by_id('id_new_subject')
+        inputbox.send_keys('Biology')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # The page shows both subject on his list
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Math2', [row.text for row in rows])
+        self.assertIn(
+            '2: Biology',
+             [row.text for row in rows]
+        )
+        # He select Biology and Math2 subject for remove and press remove
+        checkbox1 = self.browser.find_element_by_id('new_subject1')
+        checkbox1.send_keys(Keys.SPACE)
+        checkbox2 = self.browser.find_element_by_id('new_subject2')
+        checkbox2.send_keys(Keys.SPACE)
+        deletebutton = self.browser.find_element_by_id('id_delete_subject')
+        deletebutton.send_keys(Keys.ENTER)
+
+    # She visits that URL - her to-do list is still there.
+        self.fail('Finish the test!')
+
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
