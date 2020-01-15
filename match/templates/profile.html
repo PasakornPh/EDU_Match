@@ -1,18 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-        <h1>Enter Your Subject</h1>
-        <form method="POST">
-        <input name="item_subject" id="id_new_subject" placeholder="Enter a Subject" />
-        {% csrf_token %}
-        </form>
 
-        <table id="id_list_table">
-            <tr><td>{{ new_subject }}</td></tr>
+<html>
+    <head>
+        <title>EDU-Match</title>
+    </head>
+    <body>
+       <h1>EDU-Match</h1>
+        <br><table><form action="{% url 'match:profile' %}">
+
+         <button type="submit">My profile</button>
+      </form>
+        <form action="{% url 'match:home' %}">
+
+         <button type="submit">Matching</button>
+      </form></tr></table>
+        <h2>My Profile</h2>
+
+       <br>
+       <p>Username : Unknown </p>
+        <p>Password : Unknown </p>
+       <table>
+               <p>My favorite subject :</p>
+           <form action="{% url 'match:add_subject' %}" method="post">
+            <input name="item_subject" id="id_new_subject" placeholder="Enter a favorite Subject" />
+            </ul><button type="submit" value="Submit"> Add </button>
+            {% csrf_token %}
+        </form>
         </table>
+        {% if User %}
+        <table id="id_list_table">
+            <form action="{% url 'match:clean' %}" method="post">
+            {% for new_subject in User.subject.all %}
+
+
+                <tr><td><input type="checkbox" name="new_subject" id="new_subject{{ forloop.counter }}" value="{{ new_subject.id }}"><label for="new_subject{{ forloop.counter }}">{{ forloop.counter }} : {{ new_subject }}</label><br></td></tr>
+            {% endfor %}
+                <input type="submit" value="Remove">
+                {% csrf_token %}
+            </form>
+        </table>
+
+        {% endif %}
+
     </body>
 </html>
