@@ -6,8 +6,13 @@
 <body>
     <h1>EDU-Match</h1>
     <a href="{% url 'match:home' %}">Home</a> /
+    {% if user.is_authenticated %}
+    <a href="{% url 'match:logout' %}">Log Out</a> /
+    <strong>You are Logged in as {{ user.username }}</strong>
+    {% else %}
     <a href="{% url 'match:signup' %}">Sign Up</a> /
     <a href="{% url 'match:login' %}">Log in</a> /
+    {% endif %}
     <hr>
     {% block content %}
     {% endblock %}

@@ -85,6 +85,8 @@ class NewVisitorTest(LiveServerTestCase):
         inputpassword.send_keys(Keys.ENTER)
         time.sleep(1)
 
+        # หลังจากที่เขาเล่นเว็บ EDU-Match เสร็จเเล้ว
+        # เขาจึงกดไปที่ Log out
         self.fail('Finish the test!')
 
     # From then, he added the names of subjects that he was not good at anymore

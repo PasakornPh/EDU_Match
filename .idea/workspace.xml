@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
+    <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="User can log out">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functional_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/functional_tests/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_tests/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/functional_tests/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,13 +134,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="User can sign Up and show total users registered" />
     <MESSAGE value="User can login into Website" />
-    <option name="LAST_COMMIT_MESSAGE" value="User can login into Website" />
+    <MESSAGE value="User can log out" />
+    <option name="LAST_COMMIT_MESSAGE" value="User can log out" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2" timestamp="1579893308292">
+    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2" timestamp="1579898108697">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1579893308292" />
+    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1579898108697" />
     <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579201252600">
       <screen x="0" y="27" width="1366" height="702" />
     </state>

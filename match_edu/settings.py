@@ -124,3 +124,5 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'match:home'
 
+LOGOUT_REDIRECT_URL = 'match:home'
+
