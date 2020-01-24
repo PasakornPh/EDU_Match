@@ -42,6 +42,32 @@ class NewVisitorTest(unittest.TestCase):
         self.fail('Finish the test!')
 
 
+    def test_can_user_login(self):
+        # เมื่อเขาสมัครสมาชิกเสร็จเเล้ว
+        # เขาจึงไปที่หน้า login
+        self.browser.get('http://localhost:8000/account/login/')
+
+        # เขาพิมพ์ Username เเละ password ลงไป
+        # เขาจึงใส่ username เป็น moklnwza
+        inputusername = self.browser.find_element_by_id('id_username')
+        inputusername.send_keys('moklnwza')
+
+        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        inputpassword = self.browser.find_element_by_id('id_password1')
+        inputpassword.send_keys('Mokza007')
+
+        # จากนั้นเขาจึงกดปุ่ม Enter
+        inputpassword.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # เขาสังเกตเห็นชื่อ Username ของเขาเป็น moklnwza
+        username_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('moklnwza', username_text)
+
+
+        self.fail('Finish the test!')
+
+
     def test_can_start_edu_match_and_retrieve_it_later(self):
         # Mok has trouble learning. So he went to see the home page
         # of the website that his friend introduced

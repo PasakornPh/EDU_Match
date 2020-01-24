@@ -3,7 +3,7 @@
 {% block title %}EDU-MATCH{% endblock %}
 
 {% block content %}
-    <h2>Welcome to My Site, Visitor !!!</h2>
+    <h2>Welcome to My Site, {% if user.is_authenticated %}Hello {{ user.username }}{% else %}Visitor{% endif %} !</h2>
     <p>
         <strong>Total users registered </strong> {{ count }}
     </p>
