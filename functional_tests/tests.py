@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
+from django.test import LiveServerTestCase
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -11,67 +11,10 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_user_register(self):
-        # ตอนนี้ หมอกยังไม่ได้เป็นสมาชิก
-        # ดังนั้น เขาจึงสมัครสมาชิก
-        self.browser.get('http://localhost:8000/signup')
-        # เขาเห็นว่า title มีชื่อว่า Sign Up
-        # ซึ่งเเสดงว่าเขาเข้ามาถูก
-        self.assertIn('Sign Up', self.browser.title)
-        header_text = self.browser.find_element_by_tag_name('h2').text
-        self.assertIn('Sign up into Website', header_text)
-
-        # เขาจึงใส่ username เป็น moklnwza
-        inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('moklnwza')
-
-        # ต่อมาเขาใส่รหัสเป็น Mokza007
-        inputpassword = self.browser.find_element_by_id('id_password1')
-        inputpassword.send_keys('Mokza007')
-        inputpassword2 = self.browser.find_element_by_id('id_password2')
-        inputpassword2.send_keys('Mokza007')
-
-        # เขาจึงกดปุ่ม Enter
-        inputpassword2.send_keys(Keys.ENTER)
-        time.sleep(1)
-
-        # เขาได้เห็นจำนวนผู้ที่สมัครเพิ่มขึ้น
-        count_text = self.browser.find_element_by_tag_name('p').text
-        self.assertIn('Total users registered', count_text)
-
-        self.fail('Finish the test!')
-
-
-    def test_can_user_login(self):
-        # เมื่อเขาสมัครสมาชิกเสร็จเเล้ว
-        # เขาจึงไปที่หน้า login
-        self.browser.get('http://localhost:8000/account/login/')
-
-        # เขาพิมพ์ Username เเละ password ลงไป
-        # เขาจึงใส่ username เป็น moklnwza
-        inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('moklnwza')
-
-        # ต่อมาเขาใส่รหัสเป็น Mokza007
-        inputpassword = self.browser.find_element_by_id('id_password1')
-        inputpassword.send_keys('Mokza007')
-
-        # จากนั้นเขาจึงกดปุ่ม Enter
-        inputpassword.send_keys(Keys.ENTER)
-        time.sleep(1)
-
-        # เขาสังเกตเห็นชื่อ Username ของเขาเป็น moklnwza
-        username_text = self.browser.find_element_by_tag_name('h2').text
-        self.assertIn('moklnwza', username_text)
-
-
-        self.fail('Finish the test!')
-
-
     def test_can_start_edu_match_and_retrieve_it_later(self):
         # Mok has trouble learning. So he went to see the home page
         # of the website that his friend introduced
-        self.browser.get('http://localhost:8000/home')
+        self.browser.get(self.live_server_url)
 
         # He saw that the title of this website is EDU-Match
         self.assertIn('EDU-MATCH', self.browser.title)
@@ -94,6 +37,55 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
+
+        # She visits that URL - her to-do list is still there.
+        self.fail('Finish the test!')
+
+    def test_can_user_register(self):
+        # ตอนนี้ หมอกยังไม่ได้เป็นสมาชิก
+        # ดังนั้น เขาจึงสมัครสมาชิก
+        self.browser.get(self.live_server_url + '/signup')
+        # เขาเห็นว่า title มีชื่อว่า Sign Up
+        # ซึ่งเเสดงว่าเขาเข้ามาถูก
+        self.assertIn('Sign Up', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Sign up into Website', header_text)
+
+        # เขาจึงใส่ username เป็น moklnwza
+        inputusername = self.browser.find_element_by_id('id_username')
+        inputusername.send_keys('moklnwza')
+
+        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        inputpassword = self.browser.find_element_by_id('id_password1')
+        inputpassword.send_keys('Mokza007')
+        inputpassword2 = self.browser.find_element_by_id('id_password2')
+        inputpassword2.send_keys('Mokza007')
+
+        # เขาจึงกดปุ่ม Enter
+        inputpassword2.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        self.fail('Finish the test!')
+
+    def test_can_user_login(self):
+        # เมื่อเขาสมัครสมาชิกเสร็จเเล้ว
+        # เขาจึงไปที่หน้า login
+        self.browser.get(self.live_server_url + '/account/login/')
+
+        # เขาพิมพ์ Username เเละ password ลงไป
+        # เขาจึงใส่ username เป็น moklnwza
+        inputusername = self.browser.find_element_by_id('id_username')
+        inputusername.send_keys('moklnwza')
+
+        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        inputpassword = self.browser.find_element_by_id('id_password')
+        inputpassword.send_keys('Mokza007')
+
+        # จากนั้นเขาจึงกดปุ่ม Enter
+        inputpassword.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        self.fail('Finish the test!')
 
     # From then, he added the names of subjects that he was not good at anymore
 
@@ -145,8 +137,3 @@ class NewVisitorTest(unittest.TestCase):
 #        deletebutton = self.browser.find_element_by_id('id_delete_subject')
 #        deletebutton.send_keys(Keys.ENTER)
 
-        # She visits that URL - her to-do list is still there.
-        self.fail('Finish the test!')
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
