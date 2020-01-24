@@ -1,12 +1,32 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from match.models import human,Subject
 
+def home(request):
+    count = User.objects.count()
+    return render(request, 'home.html', {
+                'new_subject': request.POST.get('item_subject', ''),'count' : count
+            })
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('match:home')
+    else:
+        form = UserCreationForm()
+    return render(request,'registration/signup.html',{
+        'form' : form
+    })
+
+def profile(request):
+    return render(request, 'profile.html')
 
 def matching(request):
-
     return render(request, "home.html",)
+
 def add_subject(request):
     firstsubject = Subject(name=request.POST.get('item_subject', ''))
     firstsubject.save()
@@ -18,11 +38,6 @@ def add_subject(request):
     return render(request, 'profile.html', {
         'User': User1,
     })
-def home_page(request):
-    return render(request, 'home.html',)
-
-def profile(request):
-    return render(request, 'profile.html')
 
 def clean_model(request):
     User1 = human.objects.get(name='man')

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <h1>EDU-Match</h1>
+    <a href="{% url 'match:home' %}">Home</a> /
+    <a href="{% url 'match:signup' %}">Sign Up</a> /
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

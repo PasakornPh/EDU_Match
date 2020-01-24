@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match/templates/registration/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/EDU_Match.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EDU_Match.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functional_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/functional_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -53,8 +55,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/match/templates/registration" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/match/templates/registration" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -115,6 +122,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579201252600">
+      <screen x="0" y="27" width="1366" height="702" />
+    </state>
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1579201252600" />
     <state width="1897" height="261" key="GridCell.Tab.0.bottom" timestamp="1579110971998">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -131,10 +142,15 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state width="1897" height="261" key="GridCell.Tab.0.right/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971997" />
-    <state x="207" y="32" key="SettingsEditor" timestamp="1579115344094">
-      <screen x="70" y="27" width="1296" height="741" />
+    <state x="144" y="27" width="1012" height="702" key="SettingsEditor" timestamp="1579199670375">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
+    <state x="144" y="27" width="1012" height="702" key="SettingsEditor/0.27.1366.702@0.27.1366.702" timestamp="1579199670375" />
     <state x="207" y="32" key="SettingsEditor/70.27.1296.741@70.27.1296.741" timestamp="1579115344094" />
+    <state x="278" y="113" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1579882506916">
+      <screen x="0" y="27" width="1366" height="702" />
+    </state>
+    <state x="278" y="113" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.702@0.27.1366.702" timestamp="1579882506916" />
     <state x="624" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1579105516931">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
