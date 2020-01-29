@@ -11,5 +11,6 @@ urlpatterns = [
     path('profile/', views.profile,name='profile'),
     path('add_subject/', views.add_subject, name='add_subject'),
     path('clean_model/', views.clean_model, name='clean'),
+    path('search/', views.searching, name='search'),
 
 ]

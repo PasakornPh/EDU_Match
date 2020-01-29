@@ -1,10 +1,9 @@
+{% extends 'base.html' %}
 
+{% block title %}EDU-MATCH{% endblock %}
+
+{% block content %}
 <html>
-    <head>
-        <title>EDU-Match</title>
-    </head>
-    <body>
-       <h1>EDU-Match</h1>
         <br><table><form action="{% url 'match:profile' %}">
 
          <button type="submit">My profile</button>
@@ -16,8 +15,7 @@
         <h2>My Profile</h2>
 
        <br>
-       <p>Username : Unknown </p>
-        <p>Password : Unknown </p>
+       <p>Username : {{ user.username }} </p>
        <table>
                <p>My favorite subject :</p>
            <form action="{% url 'match:add_subject' %}" method="post">
@@ -26,6 +24,7 @@
             {% csrf_token %}
         </form>
         </table>
+
         {% if User %}
         <table id="id_list_table">
             <form action="{% url 'match:clean' %}" method="post">
@@ -45,3 +44,4 @@
 
     </body>
 </html>
+{% endblock %}

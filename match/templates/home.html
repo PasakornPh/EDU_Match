@@ -3,28 +3,38 @@
 {% block title %}EDU-MATCH{% endblock %}
 
 {% block content %}
+ <br><table><form action="{% url 'match:profile' %}">
+
+         <button type="submit">My profile</button>
+      </form>
+        <form action="{% url 'match:home' %}">
+
+         <button type="submit">Matching</button>
+      </form></tr></table>
     <h2>Welcome to My Site, {% if user.is_authenticated %}Hello {{ user.username }}{% else %}Visitor{% endif %} !</h2>
     <p>
         <strong>Total users registered </strong> {{ count }}
     </p>
-    <table><form action="{% url 'match:profile' %}">
-        <button id="id_to_profile" type="submit">My profile</button>
-    </form>
-    <form action="{% url 'match:home' %}">
-        <button type="submit">Matching</button>
-    </form></table>
 
     <h2>Matching</h2>
     <br>
-    <form method="POST">
-    <input name="item_subject" id="id_new_subject" placeholder="Enter a Subject" />
+    <form action="{% url 'match:search' %}" method="post">
+    <input name="item_subject2" id="id_new_subject" placeholder="Enter a Subject" />
     {% csrf_token %}
         <input type="submit" value="Search">
     </form>
+<br>
+    {% if Noresult %}
+       {{ Noresult }}
+       {% endif %}
+    {% if userins %}
+        <table id="id_list_matching">
+            {% for human in userins %}
+            <tr><td>{{ forloop.counter }}: {{ human }}             <button id="id_delete_subject"type="submit">Match</button><br></td></tr>
 
-    <table id="id_list_table">
-        <br>
-        <tr><td>{{ new_subject }}</td></tr>
-    </table>
+            {% endfor %}
+        </table>
+
+        {% endif %}
 {% endblock %}
 
