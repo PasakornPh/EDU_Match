@@ -53,13 +53,13 @@ class NewVisitorTest(LiveServerTestCase):
 
         # เขาจึงใส่ username เป็น moklnwza
         inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('moklnwza')
+        inputusername.send_keys('detmonmok')
 
         # ต่อมาเขาใส่รหัสเป็น Mokza007
         inputpassword = self.browser.find_element_by_id('id_password1')
-        inputpassword.send_keys('Mokza007')
+        inputpassword.send_keys('mok123456789')
         inputpassword2 = self.browser.find_element_by_id('id_password2')
-        inputpassword2.send_keys('Mokza007')
+        inputpassword2.send_keys('mok123456789')
 
         # เขาจึงกดปุ่ม Enter
         inputpassword2.send_keys(Keys.ENTER)
@@ -75,11 +75,11 @@ class NewVisitorTest(LiveServerTestCase):
         # เขาพิมพ์ Username เเละ password ลงไป
         # เขาจึงใส่ username เป็น moklnwza
         inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('moklnwza')
+        inputusername.send_keys('detmonmok')
 
         # ต่อมาเขาใส่รหัสเป็น Mokza007
         inputpassword = self.browser.find_element_by_id('id_password')
-        inputpassword.send_keys('Mokza007')
+        inputpassword.send_keys('mok123456789')
 
         # จากนั้นเขาจึงกดปุ่ม Enter
         inputpassword.send_keys(Keys.ENTER)
@@ -89,16 +89,78 @@ class NewVisitorTest(LiveServerTestCase):
         # เขาจึงกดไปที่ Log out
         self.fail('Finish the test!')
 
-    # From then, he added the names of subjects that he was not good at anymore
 
-    # He typed "General Mathematics"
+    def test_to_search_for_matching(self):
+        self.browser.get(self.live_server_url + '/signup')
+        # เขาเห็นว่า title มีชื่อว่า Sign Up
+        # ซึ่งเเสดงว่าเขาเข้ามาถูก
+        self.assertIn('Sign Up', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Sign up into Website', header_text)
+
+        # เขาจึงใส่ username เป็น detmonmok
+        inputusername = self.browser.find_element_by_id('id_username')
+        inputusername.send_keys('detmonmok')
+
+        # ต่อมาเขาใส่รหัสเป็น mok123456789
+        inputpassword = self.browser.find_element_by_id('id_password1')
+        inputpassword.send_keys('mok123456789')
+        inputpassword2 = self.browser.find_element_by_id('id_password2')
+        inputpassword2.send_keys('mok123456789')
+
+        # เขาจึงกดปุ่ม Enter
+        inputpassword2.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+
+        self.browser.get(self.live_server_url + '/account/login/')
+
+        # เขาพิมพ์ Username เเละ password ลงไป
+        # เขาจึงใส่ username เป็น moklnwza
+        inputusername = self.browser.find_element_by_id('id_username')
+        inputusername.send_keys('detmonmok')
+
+        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        inputpassword = self.browser.find_element_by_id('id_password')
+        inputpassword.send_keys('mok123456789')
+
+        # จากนั้นเขาจึงกดปุ่ม Enter
+        inputpassword.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+
+        # From then, he added the names of subjects that he was not good at anymore
+        self.browser.get(self.live_server_url)
+        self.assertIn('EDU-MATCH', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Welcome to My Site , Hello detmonmok !', header_text)
+
+        inputbox = self.browser.find_element_by_id('id_new_subject')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Enter a Subject'
+        )
+        # He typed "General Mathematics"
+        inputbox.send_keys('General Mathematics')
+
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
     # The webpage shows more people who specialize in "General Mathematics"
-
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1:kitsanapong', [row.text for row in rows])
     # Later, he wanted to know what would happen if he typed a subject that didn't exist
+        inputbox.send_keys('Nothing')
+
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
     # The webpage shows the message "No match found. Ready to match. Please re-match later."
-
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('No users were found matching', [row.text for row in rows])
+        self.fail('Finish the test!')
     # He takes the time to choose someone to tutor for a long time
 
     # He feels like this website very much
