@@ -142,10 +142,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="User can log out" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2" timestamp="1579898108697">
-      <screen x="0" y="27" width="1366" height="702" />
+    <state x="625" y="61" width="777" height="657" key="CommitChangelistDialog2" timestamp="1580671247199">
+      <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1579898108697" />
+    <state x="625" y="61" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580671247199" />
     <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579201252600">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
@@ -172,10 +173,11 @@
     <state x="144" y="27" width="1012" height="702" key="SettingsEditor/0.27.1366.702@0.27.1366.702" timestamp="1579199670375" />
     <state x="202" y="27" width="1423" height="1000" key="SettingsEditor/0.27.1920.1000@0.27.1920.1000" timestamp="1580334711947" />
     <state x="207" y="32" key="SettingsEditor/70.27.1296.741@70.27.1296.741" timestamp="1579115344094" />
-    <state x="278" y="113" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1579882506916">
-      <screen x="0" y="27" width="1366" height="702" />
+    <state x="391" y="150" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1580671258311">
+      <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="278" y="113" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.702@0.27.1366.702" timestamp="1579882506916" />
+    <state x="391" y="150" key="Vcs.Push.Dialog.v2/0.27.1920.1000@0.27.1920.1000" timestamp="1580671258311" />
     <state x="728" y="446" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580671228038">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
