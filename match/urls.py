@@ -5,6 +5,7 @@ from . import views
 app_name = 'match'
 urlpatterns = [
     # ex: /match/
+    path('chat/', include('chat.urls')),
     path('', views.home, name='home'),
     path('signup/',views.signup, name='signup'),
     path('account/',include('django.contrib.auth.urls')),

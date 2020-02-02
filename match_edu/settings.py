@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'match.apps.MatchConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,7 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'match_edu.wsgi.application'
-
+ASGI_APPLICATION = 'match_edu.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
