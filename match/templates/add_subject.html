@@ -4,18 +4,9 @@
 
 {% block content %}
 <html>
-        <br><table><form action="{% url 'match:profile' %}">
-
-         <button type="submit">My profile</button>
-      </form>
-        <form action="{% url 'match:home' %}">
-
-         <button type="submit">Matching</button>
-      </form></tr></table>
-        <h2>My Profile</h2>
-
-       <br>
-       <p>Username : {{ user.username }} </p>
+        <h2>Add Subject</h2>
+        <h3>Name : {{ user.first_name }}  {{ user.last_name }}</h3>
+        <p>Username : {{ user.username }} </p>
        <table>
                <p>My favorite subject :</p>
            <form action="{% url 'match:add_subject' %}" method="post">

@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from match.models import human,Subject
 
+from django.urls import reverse_lazy
+from django.views.generic import CreateView , UpdateView
+
+from match.forms import SignUpForm , ProfileForm
+
 def home(request):
     count = User.objects.count()
     username = None
@@ -16,17 +21,19 @@ def home(request):
                 'new_subject': request.POST.get('item_subject', ''),'count' : count
             })
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('match:home')
-    else:
-        form = UserCreationForm()
-    return render(request,'registration/signup.html',{
-        'form' : form
-    })
+# Sign Up View
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    success_url = reverse_lazy('match:login')
+    template_name = 'registration/signup.html'
+
+
+# Edit Profile View
+class ProfileView(UpdateView):
+    model = User
+    form_class = ProfileForm
+    success_url = reverse_lazy('match:home')
+    template_name = 'registration/profile.html'
 
 
 def searching(request):
@@ -44,9 +51,9 @@ def searching(request):
     return render(request, 'home.html', {'userins': first,'count': count})
 
 
-def profile(request):
+def profile_add_subject(request):
     User1 = human.objects.get(name=request.user.username)
-    return render(request, 'profile.html', {
+    return render(request, 'add_subject.html', {
         'User': User1,
     })
 
@@ -63,7 +70,7 @@ def add_subject(request):
     fsubject = Subject.objects.get(name=request.POST.get('item_subject', ''))
     human.objects.get(name=request.user.username).subject.add(fsubject)
     User1 = human.objects.get(name=request.user.username)
-    return render(request, 'profile.html', {
+    return render(request, 'add_subject.html', {
         'User': User1,
     })
 
@@ -74,7 +81,7 @@ def clean_model(request):
     if len(new_subject_list) == 0:
         # Redisplay the question voting form.
 
-        return render(request, 'profile.html', {
+        return render(request, 'add_subject.html', {
             'User': User1,
             'error_message': "You didn't select a subject.",
         })
@@ -90,4 +97,4 @@ def clean_model(request):
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
 
-        return render(request, 'profile.html', {'User':User1})
+        return render(request, 'add_subject.html', {'User':User1})

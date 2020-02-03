@@ -3,15 +3,7 @@
 {% block title %}EDU-MATCH{% endblock %}
 
 {% block content %}
- <br><table><form action="{% url 'match:profile' %}">
-
-         <button type="submit">My profile</button>
-      </form>
-        <form action="{% url 'match:home' %}">
-
-         <button type="submit">Matching</button>
-      </form></tr></table>
-    <h2>Welcome to My Site, {% if user.is_authenticated %}Hello {{ user.username }}{% else %}Visitor{% endif %} !</h2>
+    <h2>Welcome to My Site, {% if user.is_authenticated %}Hello {{ user.first_name }}{% else %}Visitor{% endif %} !</h2>
     <p>
         <strong>Total users registered </strong> {{ count }}
     </p>
