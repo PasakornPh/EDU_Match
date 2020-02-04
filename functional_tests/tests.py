@@ -35,13 +35,13 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
+        # table = self.browser.find_element_by_id('id_list_matching')
+        # rows = table.find_elements_by_tag_name('tr')
 
         # She visits that URL - her to-do list is still there.
         self.fail('Finish the test!')
 
-    def test_can_user_register(self):
+    def test_can_user_register_login_and_edit_profile(self):
         # ตอนนี้ หมอกยังไม่ได้เป็นสมาชิก
         # ดังนั้น เขาจึงสมัครสมาชิก
         self.browser.get(self.live_server_url + '/signup')
@@ -51,11 +51,21 @@ class NewVisitorTest(LiveServerTestCase):
         header_text = self.browser.find_element_by_tag_name('h2').text
         self.assertIn('Sign up into Website', header_text)
 
-        # เขาจึงใส่ username เป็น moklnwza
+        # เขาจึงใส่ username เป็น somsak
         inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('detmonmok')
+        inputusername.send_keys('somsak')
 
-        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        # เขาได้ใส่ชื่อเเละนามสกุลเป็น Pasakorn Phareyart เเต่เขาใส่ชื่อผิด จึงเป็น Paskorn
+        input_firstname = self.browser.find_element_by_id('id_first_name')
+        input_firstname.send_keys('Paskorn')
+        input_lastname = self.browser.find_element_by_id('id_last_name')
+        input_lastname.send_keys('Phareyart')
+
+      # เขาได้ใส่ E-mail เป็น example@gmail.com
+        input_email = self.browser.find_element_by_id('id_email')
+        input_email.send_keys('example@gmail.com')
+
+        # ต่อมาเขาใส่รหัสเป็น mok123456789
         inputpassword = self.browser.find_element_by_id('id_password1')
         inputpassword.send_keys('mok123456789')
         inputpassword2 = self.browser.find_element_by_id('id_password2')
@@ -65,19 +75,16 @@ class NewVisitorTest(LiveServerTestCase):
         inputpassword2.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        self.fail('Finish the test!')
-
-    def test_can_user_login(self):
         # เมื่อเขาสมัครสมาชิกเสร็จเเล้ว
         # เขาจึงไปที่หน้า login
         self.browser.get(self.live_server_url + '/account/login/')
 
         # เขาพิมพ์ Username เเละ password ลงไป
-        # เขาจึงใส่ username เป็น moklnwza
+        # เขาจึงใส่ username เป็น somsak
         inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('detmonmok')
+        inputusername.send_keys('somsak')
 
-        # ต่อมาเขาใส่รหัสเป็น Mokza007
+        # ต่อมาเขาใส่รหัสเป็น mok123456789
         inputpassword = self.browser.find_element_by_id('id_password')
         inputpassword.send_keys('mok123456789')
 
@@ -85,10 +92,37 @@ class NewVisitorTest(LiveServerTestCase):
         inputpassword.send_keys(Keys.ENTER)
         time.sleep(1)
 
+        # เขาสังเกตเห็นว่าชื่อที่ปรากฏผิดจาก Pasakorn เป็น Paskorn
+        name_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Paskorn', name_text)
+
+        # เขาจึงเข้าไปที่หน้า Profile เพื่อแก้ไข
+        text_profile = self.browser.find_element_by_id('id_profile')
+        text_profile.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        self.assertIn('Profile', self.browser.title)
+
+        # เขาเห็นชื่อที่ผิดรากฏอยู่ที่ textinput
+        input_firstname_profile = self.browser.find_element_by_id('id_first_name')
+        #print(input_firstname_profile)
+        self.assertIn('Paskorn', input_firstname_profile.get_attribute("value"))
+
+        # เขาจึงลบชื่อที่ผิดเเละเเก้เป็น Pasakorn
+        input_firstname_profile.clear()
+        input_firstname_profile.send_keys('Pasakorn')
+
+        # จากนั้นเขาก็กด Enter
+        input_firstname_profile.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # เขาสังเกตเห็นว่าชื่อที่ปรากฏเป็น Pasakorn ซึ่งเป็นชื่อที่เขาต้องการ
+        name_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Pasakorn', name_text)
+
         # หลังจากที่เขาเล่นเว็บ EDU-Match เสร็จเเล้ว
         # เขาจึงกดไปที่ Log out
         self.fail('Finish the test!')
-
 
     def test_to_search_for_matching(self):
         self.browser.get(self.live_server_url + '/signup')
@@ -133,7 +167,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         self.assertIn('EDU-MATCH', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h2').text
-        self.assertIn('Welcome to My Site , Hello detmonmok !', header_text)
+        self.assertIn('Welcome to My Site , Hello Pasakorn !', header_text)
 
         inputbox = self.browser.find_element_by_id('id_new_subject')
         self.assertEqual(

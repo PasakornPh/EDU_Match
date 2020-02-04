@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="add real time chatting">
-      <change afterPath="$PROJECT_DIR$/match/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/profile.html" afterDir="false" />
+    <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_tests/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/functional_tests/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/add_subject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,7 @@
       <recent name="$PROJECT_DIR$/match/templates/registration" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EDU_Match" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,8 +79,23 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for tests.NewVisitorTest.test_can_user_register" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="EDU_Match" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/functional_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.NewVisitorTest.test_can_user_register&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for tests.NewVisitorTest.test_can_user_register" />
         <item itemvalue="Python.manage" />
       </list>
     </recent_temporary>
@@ -156,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580671486317</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add textinput first and last name E-mail , Edit Profile in page Profile">
+      <created>1580746441438</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580746441438</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,33 +184,38 @@
     <MESSAGE value="User can login into Website" />
     <MESSAGE value="User can log out" />
     <MESSAGE value="Add Chat app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Chat app" />
+    <MESSAGE value="Add textinput first and last name E-mail , Edit Profile in page Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add textinput first and last name E-mail , Edit Profile in page Profile" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2" timestamp="1580673952836">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state x="277" y="52" width="777" height="807" key="CommitChangelistDialog2" timestamp="1580746441365">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="445" y="51" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1579898108697" />
+    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1580746441365" />
     <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580673952836" />
     <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579201252600">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
     <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1579201252600" />
-    <state width="1897" height="261" key="GridCell.Tab.0.bottom" timestamp="1579110971998">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state width="1343" height="163" key="GridCell.Tab.0.bottom" timestamp="1580796205503">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
+    <state width="1343" height="163" key="GridCell.Tab.0.bottom/0.27.1366.702@0.27.1366.702" timestamp="1580796205503" />
     <state width="1897" height="261" key="GridCell.Tab.0.bottom/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971998" />
-    <state width="1897" height="261" key="GridCell.Tab.0.center" timestamp="1579110971997">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state width="1343" height="163" key="GridCell.Tab.0.center" timestamp="1580796205503">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
+    <state width="1343" height="163" key="GridCell.Tab.0.center/0.27.1366.702@0.27.1366.702" timestamp="1580796205503" />
     <state width="1897" height="261" key="GridCell.Tab.0.center/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971997" />
-    <state width="1897" height="261" key="GridCell.Tab.0.left" timestamp="1579110971997">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state width="1343" height="163" key="GridCell.Tab.0.left" timestamp="1580796205502">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
+    <state width="1343" height="163" key="GridCell.Tab.0.left/0.27.1366.702@0.27.1366.702" timestamp="1580796205502" />
     <state width="1897" height="261" key="GridCell.Tab.0.left/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971997" />
-    <state width="1897" height="261" key="GridCell.Tab.0.right" timestamp="1579110971997">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state width="1343" height="163" key="GridCell.Tab.0.right" timestamp="1580796205503">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
+    <state width="1343" height="163" key="GridCell.Tab.0.right/0.27.1366.702@0.27.1366.702" timestamp="1580796205503" />
     <state width="1897" height="261" key="GridCell.Tab.0.right/0.27.1920.1000@0.27.1920.1000" timestamp="1579110971997" />
     <state x="202" y="27" width="1423" height="1000" key="SettingsEditor" timestamp="1580334711947">
       <screen x="0" y="27" width="1920" height="1000" />
@@ -201,6 +223,10 @@
     <state x="144" y="27" width="1012" height="702" key="SettingsEditor/0.27.1366.702@0.27.1366.702" timestamp="1579199670375" />
     <state x="202" y="27" width="1423" height="1000" key="SettingsEditor/0.27.1920.1000@0.27.1920.1000" timestamp="1580334711947" />
     <state x="207" y="32" key="SettingsEditor/70.27.1296.741@70.27.1296.741" timestamp="1579115344094" />
+    <state x="526" y="295" width="303" height="164" key="VCS.ChangelistChooser" timestamp="1580796160933">
+      <screen x="0" y="27" width="1366" height="702" />
+    </state>
+    <state x="526" y="295" width="303" height="164" key="VCS.ChangelistChooser/0.27.1366.702@0.27.1366.702" timestamp="1580796160933" />
     <state x="391" y="150" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1580671258311">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
