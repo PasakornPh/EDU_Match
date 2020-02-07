@@ -22,7 +22,7 @@
     {% if userins %}
         <table id="id_list_matching">
             {% for human in userins %}
-            <tr><td>{{ forloop.counter }}: {{ human }}             <button id="id_delete_subject"type="submit">Match</button><br></td></tr>
+            <tr><td>{{ forloop.counter }}: {{ human }}           <a href="{% url 'match:view_profile' human   %}">Match</a><br></td></tr>
 
             {% endfor %}
         </table>

@@ -3,10 +3,13 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %} 
-    <h2>Profile</h2>
+    <h2>{{ username }}'s profile</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>Username   : {{ username }} </p>
+        <p>First name : {{ firstname }} </p>
+        <p>Last  name : {{ lastname }} </p>
+        <p>Email address     : {{ email }} </p>
         <button type="submit"> Chat </button>
         <br><br>
         <a href="{% url 'match:home' %}">Back</a>

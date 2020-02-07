@@ -36,6 +36,12 @@ class ProfileView(UpdateView):
     template_name = 'registration/profile.html'
 
 
+
+def view_other_profile(request,name):
+    Selecteduser=User.objects.get_by_natural_key(name)
+    username=Selecteduser.username
+    return render(request, 'other_profile.html', {'username': username ,'firstname': Selecteduser.first_name ,'lastname': Selecteduser.last_name, 'email':Selecteduser.email})
+
 def searching(request):
     count = User.objects.count()
     userinsubject=[]
@@ -44,7 +50,6 @@ def searching(request):
         return render(request, 'home.html', {'Noresult': Noresult,'count' : count})
     firstsubject = Subject.objects.get(name=request.POST.get('item_subject2', ''))
     first= firstsubject.human_set.all().exclude(name=request.user.username)
-
 
 
     #    fisubject.add(Subject)
