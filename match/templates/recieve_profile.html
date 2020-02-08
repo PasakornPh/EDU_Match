@@ -11,12 +11,8 @@
         <p>Last  name : {{ lastname }} </p>
         <p>Email address     : {{ email }} </p>
         {{ count }}
-        {% if checked %}
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:unmatching' username   %}'"> unmatching </button>
-        {% else %}
-        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'match:matching' username   %}'"> matching </button>
-        {% endif %}
+        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'match:acceptM' username   %}'"> Accept </button> <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:declineM' username   %}'"> Decline </button>
         <br><br>
-        <a href="{% url 'match:home' %}">Back</a>
+        <a href="{% url 'match:request_match' %}">Back</a>
     </form>
 {% endblock content %}

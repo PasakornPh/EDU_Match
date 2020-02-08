@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %} 
+    <h2> {{ username }}'s profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Username   : {{ username }} <span class="badge badge-pill badge-warning">Matched</span> </p>
+        <p>First name : {{ firstname }} </p>
+        <p>Last  name : {{ lastname }} </p>
+        <p>Email address     : {{ email }} </p>
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:unmatched' username   %}'"> Unmatched ! </button>
+        <br><br>
+        <a href="{% url 'match:friendmatched' %}">Back</a>
+    </form>
+{% endblock content %}

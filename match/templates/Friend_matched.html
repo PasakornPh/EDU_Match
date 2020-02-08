@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+<html>
+<h2>Friend matched</h2>
+
+
+<br>
+{% if allmatched %}
+        <table id="id_list_matching">
+            {% for matched in allmatched %}
+            <tr><td>{{ forloop.counter }}: {{ matched }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'match:friendprofile' matched   %}'"> Profile </button>  <br></td></tr>
+            {% endfor %}
+        </table>
+{% elif Nomatched %}
+<ul> {{ Nomatched }} </ul>
+
+{% endif %}
+
+
+</html>
+
+
+
+
+{% endblock content %}

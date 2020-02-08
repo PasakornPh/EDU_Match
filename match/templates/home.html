@@ -3,6 +3,7 @@
 {% block title %}EDU-MATCH{% endblock %}
 
 {% block content %}
+
     <h2>Welcome to My Site, {% if user.is_authenticated %}Hello {{ user.first_name }}{% else %}Visitor{% endif %} !</h2>
     <p>
         <strong>Total users registered </strong> {{ count }}
@@ -19,11 +20,19 @@
     {% if Noresult %}
        {{ Noresult }}
        {% endif %}
+{% if usermatched %}
+<table id="id_list_matching2">
+            {% for matched in usermatched %}
+            <tr><td> -  {{ matched }}          <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'match:friendprofile' matched   %}'"> Profile </button> <br></td></tr>
+            {% endfor %}
+        </table>
+
+        {% endif %}
     {% if userins %}
         <table id="id_list_matching">
-            {% for human in userins %}
-            <tr><td>{{ forloop.counter }}: {{ human }}           <a href="{% url 'match:view_profile' human   %}">Match</a><br></td></tr>
 
+            {% for human in userins %}
+            <tr><td> -  {{ human }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'match:view_profile' human   %}'"> Profile </button> <br></td></tr>
             {% endfor %}
         </table>
 

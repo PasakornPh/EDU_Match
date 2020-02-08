@@ -4,11 +4,14 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <h1>EDU-Match</h1>
     <a href="{% url 'match:home' %}">Home</a> /
     {% if user.is_authenticated %}
     <a id="id_profile" href="/profile/{{ user.pk }}">Profile</a> /
     <a href="{% url 'match:profile_add_subject' %}">Add Subject</a> /
+    <a href="{% url 'match:friendmatched' %}">Friend matched</a> /
+    <a href="{% url 'match:request_match' %}"> {% if wantmatchcount %} <span class="badge badge-pill badge-danger">{{ wantmatchcount }}</span> {% endif %} Request to matching</a> /
     <a href="{% url 'match:logout' %}">Log Out</a> /
     <strong>You are Logged in as {{ user.username }}</strong>
     {% else %}
