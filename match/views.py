@@ -89,7 +89,7 @@ def unfriendmatched(request,name):
     Selunmatched.delete()
 
     User2 = human.objects.get(name=name)
-    Selunmatched2=User2.matched.get(request.user.username)
+    Selunmatched2=User2.matched.get(name=request.user.username)
     Selunmatched2.delete()
 
 

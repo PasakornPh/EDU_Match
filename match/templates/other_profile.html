@@ -12,7 +12,7 @@
         <p>Email address     : {{ email }} </p>
         {{ count }}
         {% if checked %}
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:unmatching' username   %}'"> unmatching </button>
+        <button type="button" class="btn btn-outline-danger btn-sm " onclick="location.href='{% url 'match:unmatching' username   %}'"> unmatching </button>
         {% else %}
         <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'match:matching' username   %}'"> matching </button>
         {% endif %}
