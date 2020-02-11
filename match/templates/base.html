@@ -25,8 +25,11 @@
             <li class="nav-item">
             <a class="nav-link" href="{% url 'match:request_match' %}"> {% if wantmatchcount %} <span class="badge badge-pill badge-danger">{{ wantmatchcount }}</span> {% endif %} Request to matching</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/accounts/change_password">Change Password</a>
+            </li>
             </ul>
-            <a class="nav-link disabled" href="#">You are Logged in as {{ user.username }}</a>
+            <a class="nav-link disabled" href="#">You are Logged in as {{ user.first_name }}</a>
             <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'match:logout' %}">Log Out</a>
             {% else %}
             <li class="nav-item">

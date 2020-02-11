@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/match/templates/registration/change_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match/templates/registration/change_password_done.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/other_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/other_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,13 +52,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/match/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/match/templates/registration" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/match/templates" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/match/templates/registration" />
+      <recent name="$PROJECT_DIR$/match/templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/match/templates/registration" />
+      <recent name="$PROJECT_DIR$/match/templates" />
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
@@ -199,10 +206,10 @@
     </state>
     <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1580746441365" />
     <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580673952836" />
-    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579201252600">
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581416695913">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1579201252600" />
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1581416695913" />
     <state width="1343" height="163" key="GridCell.Tab.0.bottom" timestamp="1580796205503">
       <screen x="0" y="27" width="1366" height="702" />
     </state>

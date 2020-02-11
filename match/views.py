@@ -241,3 +241,6 @@ def clean_model(request):
             # user hits the Back button.
 
         return render(request, 'add_subject.html', {'User':User1})
+
+def change_password_done(request):
+    return render(request, 'registration/change_password_done.html')

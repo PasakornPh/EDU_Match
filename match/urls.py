@@ -1,6 +1,7 @@
 from django.urls import path,include
 from match.views import SignUpView , ProfileView
 from . import views
+from django.contrib.auth import views as auth_views
 
 app_name = 'match'
 urlpatterns = [
@@ -19,10 +20,17 @@ urlpatterns = [
     path('matching/<str:name>', views.matching, name='matching'),
     path('request_match/', views.request_match, name='request_match'),
     path('unmatching/<str:name>', views.unmatching, name='unmatching'),
-    path('account/',include('django.contrib.auth.urls')),
+    path('accounts/',include('django.contrib.auth.urls')),
     path('profile_add_subject/', views.profile_add_subject,name='profile_add_subject'),
     path('add_subject/', views.add_subject, name='add_subject'),
     path('clean_model/', views.clean_model, name='clean'),
     path('search/', views.searching, name='search'),
-
+    path('accounts/change_password/',
+        auth_views.PasswordChangeView.as_view(
+            template_name='registration/change_password.html',
+            success_url='/accounts/change_password/done'
+        ),
+        name='change_password'
+    ),
+    path('accounts/change_password/done', views.change_password_done, name='change_password_done'),
 ]
