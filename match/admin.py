@@ -1,3 +1,6 @@
+
 from django.contrib import admin
 
-# Register your models here.
+from .models import human,Subject,Wantmatch,Matched,chatlog
+
+admin.site.register(chatlog)
