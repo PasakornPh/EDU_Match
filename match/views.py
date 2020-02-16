@@ -9,6 +9,7 @@ from django.views.generic import CreateView , UpdateView
 from match.forms import SignUpForm , ProfileForm
 
 def home(request):
+
     count = User.objects.count()
     username = None
 
