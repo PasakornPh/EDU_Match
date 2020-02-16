@@ -31,3 +31,7 @@ class Matched(models.Model):
 
     def __str__(self):
         return self.name
+
+class chatlog(models.Model):
+    chatroom=models.CharField(max_length=211111111111)
+    chatlo=models.CharField(max_length=2111111111111)
