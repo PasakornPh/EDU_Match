@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match/templates/registration/password_reset_subject.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/Friend_matched.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/Friend_matched.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/Friend_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/Friend_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/add_subject.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/add_subject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/other_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/other_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/recieve_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/recieve_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/recievematch.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/recievematch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/registration/change_password_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/change_password_done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -223,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581883074761</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="User can reset password when user forgot password">
+      <created>1581957471481</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1581957471481</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +228,8 @@
     <MESSAGE value="Add Chat DB Model" />
     <MESSAGE value="Edit Chat : Sender Message to right side" />
     <MESSAGE value="Create Admin function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create Admin function" />
+    <MESSAGE value="User can reset password when user forgot password" />
+    <option name="LAST_COMMIT_MESSAGE" value="User can reset password when user forgot password" />
   </component>
   <component name="WindowStateProjectService">
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581873852939">
@@ -246,11 +237,11 @@
     </state>
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1325.741@0.27.1325.741" timestamp="1581873852939" />
     <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1581280199649" />
-    <state x="269" y="27" width="754" height="741" key="CommitChangelistDialog2" timestamp="1581883074652">
-      <screen x="0" y="27" width="1325" height="741" />
+    <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1581957471365">
+      <screen x="0" y="27" width="1366" height="702" />
     </state>
     <state x="269" y="27" width="754" height="741" key="CommitChangelistDialog2/0.27.1325.741@0.27.1325.741" timestamp="1581883074652" />
-    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1580746441365" />
+    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1581957471365" />
     <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580673952836" />
     <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1581951970323">
       <screen x="0" y="27" width="1366" height="702" />
