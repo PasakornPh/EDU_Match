@@ -5,6 +5,9 @@ def index(request):
     return render(request, 'chat/index.html', {})
 
 def room(request, room_name):
+    if not chatlog.objects.filter(chatroom=room_name).exists():
+        chat = chatlog.objects.create(chatroom=room_name)
+        chat.save()
     chat=chatlog.objects.get(chatroom=room_name)
     splited=str(chat.chatlo).split('\n')
     sum=''

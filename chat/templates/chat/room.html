@@ -22,7 +22,8 @@
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         var message = data['message'];
-        if(message.includes('{{user.username}}') ){document.querySelector('#chat-log').value += ('\t\t\t\t\t\t\t\t\t'+message + '\n');}
+        if(message.includes('{{user.username}}') )
+        {document.querySelector('#chat-log').value += ('\t\t\t\t\t\t\t\t\t'+message + '\n');}
         else{document.querySelector('#chat-log').value += (message + '\n');}
     };
 
