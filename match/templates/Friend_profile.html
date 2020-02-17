@@ -10,8 +10,8 @@
         <p>First name : {{ firstname }} </p>
         <p>Last  name : {{ lastname }} </p>
         <p>Email address     : {{ email }} </p>
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:unmatched' username   %}'"> Unmatched ! </button>
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'unmatched' username   %}'"> Unmatched ! </button>
         <br><br>
-        <a href="{% url 'match:friendmatched' %}">Back</a>
+        <a href="{% url 'friendmatched' %}">Back</a>
     </form>
 {% endblock content %}

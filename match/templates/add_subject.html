@@ -9,7 +9,7 @@
         <p>Username : {{ user.username }} </p>
        <table>
                <p>My favorite subject :</p>
-           <form action="{% url 'match:add_subject' %}" method="post">
+           <form action="{% url 'add_subject' %}" method="post">
             <input name="item_subject" id="id_new_subject" placeholder="Enter a favorite Subject" />
             </ul><button type="submit" value="Submit"> Add </button>
             {% csrf_token %}
@@ -18,7 +18,7 @@
 
         {% if User %}
         <table id="id_list_table">
-            <form action="{% url 'match:clean' %}" method="post">
+            <form action="{% url 'clean' %}" method="post">
             {% for new_subject in User.subject.all %}
 
 

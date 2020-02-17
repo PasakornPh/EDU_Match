@@ -52,7 +52,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'match_edu.urls'
+#ROOT_URLCONF = 'match_edu.urls'
+ROOT_URLCONF = 'match.urls'
 
 TEMPLATES = [
     {
@@ -135,7 +136,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'match:home'
+LOGIN_REDIRECT_URL = 'home'
 
-LOGOUT_REDIRECT_URL = 'match:home'
+LOGOUT_REDIRECT_URL = 'home'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

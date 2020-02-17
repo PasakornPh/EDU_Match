@@ -11,7 +11,7 @@
 
     <h2>Matching</h2>
     <br>
-    <form action="{% url 'match:search' %}" method="post">
+    <form action="{% url 'search' %}" method="post">
     <input name="item_subject2" id="id_new_subject" placeholder="Enter a Subject" />
     {% csrf_token %}
         <input type="submit" value="Search">
@@ -23,7 +23,7 @@
 {% if usermatched %}
 <table id="id_list_matching2">
             {% for matched in usermatched %}
-            <tr><td> -  {{ matched }}          <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'match:friendprofile' matched   %}'"> Profile </button> <br></td></tr>
+            <tr><td> -  {{ matched }}          <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'friendprofile' matched   %}'"> Profile </button> <br></td></tr>
             {% endfor %}
         </table>
 
@@ -32,7 +32,7 @@
         <table id="id_list_matching">
 
             {% for human in userins %}
-            <tr><td> -  {{ human }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'match:view_profile' human   %}'"> Profile </button> <br></td></tr>
+            <tr><td> -  {{ human }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'view_profile' human   %}'"> Profile </button> <br></td></tr>
             {% endfor %}
         </table>
 

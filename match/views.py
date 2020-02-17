@@ -30,7 +30,7 @@ def home(request):
 # Sign Up View
 class SignUpView(CreateView):
     form_class = SignUpForm
-    success_url = reverse_lazy('match:login')
+    success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
 
@@ -38,7 +38,7 @@ class SignUpView(CreateView):
 class ProfileView(UpdateView):
     model = User
     form_class = ProfileForm
-    success_url = reverse_lazy('match:home')
+    success_url = reverse_lazy('home')
     template_name = 'registration/profile.html'
 
 def request_match(request):

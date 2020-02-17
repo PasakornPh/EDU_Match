@@ -11,8 +11,8 @@
         <p>Last  name : {{ lastname }} </p>
         <p>Email address     : {{ email }} </p>
         {{ count }}
-        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'match:acceptM' username   %}'"> Accept </button> <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'match:declineM' username   %}'"> Decline </button>
+        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'acceptM' username   %}'"> Accept </button> <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'declineM' username   %}'"> Decline </button>
         <br><br>
-        <a href="{% url 'match:request_match' %}">Back</a>
+        <a href="{% url 'request_match' %}">Back</a>
     </form>
 {% endblock content %}
