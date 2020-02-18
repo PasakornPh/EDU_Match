@@ -19,7 +19,7 @@ class NewVisitorTest(LiveServerTestCase):
         # He saw that the title of this website is EDU-Match
         self.assertIn('EDU-MATCH', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h2').text
-        self.assertIn('Welcome to My Site', header_text)
+        self.assertIn('Welcome to EDU-Match', header_text)
 
         inputbox = self.browser.find_element_by_id('id_new_subject')
         self.assertEqual(
@@ -77,12 +77,12 @@ class NewVisitorTest(LiveServerTestCase):
 
         # เมื่อเขาสมัครสมาชิกเสร็จเเล้ว
         # เขาจึงไปที่หน้า login
-        self.browser.get(self.live_server_url + '/account/login/')
+        self.assertIn('Login', self.browser.title)
 
         # เขาพิมพ์ Username เเละ password ลงไป
         # เขาจึงใส่ username เป็น somsak
-        inputusername = self.browser.find_element_by_id('id_username')
-        inputusername.send_keys('somsak')
+        inputusername_login = self.browser.find_element_by_id('id_username')
+        inputusername_login.send_keys('somsak')
 
         # ต่อมาเขาใส่รหัสเป็น mok123456789
         inputpassword = self.browser.find_element_by_id('id_password')
@@ -90,7 +90,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # จากนั้นเขาจึงกดปุ่ม Enter
         inputpassword.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(3)
 
         # เขาสังเกตเห็นว่าชื่อที่ปรากฏผิดจาก Pasakorn เป็น Paskorn
         name_text = self.browser.find_element_by_tag_name('h2').text
@@ -120,9 +120,71 @@ class NewVisitorTest(LiveServerTestCase):
         name_text = self.browser.find_element_by_tag_name('h2').text
         self.assertIn('Pasakorn', name_text)
 
+        self.test_can_user_change_password()
+
         # หลังจากที่เขาเล่นเว็บ EDU-Match เสร็จเเล้ว
         # เขาจึงกดไปที่ Log out
         self.fail('Finish the test!')
+
+    def test_can_user_change_password(self):
+        # หลังจากที่เข้าสมัครเเละเปลียนชื่อเรียบร้อยเเล้ว
+        # เขาจีงต้องการที่จะเปลี่ยนรหัสของเขา
+        # เขาจึงเข้ามาที่หน้าเปลี่ยนรหัส
+        self.browser.get(self.live_server_url + '/accounts/change_password/')
+        time.sleep(1)
+
+        # จากนั้นเห็นอีกว่าหัวข้อของหน้านี้คือ Change Password
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Change Password', header_text)
+
+        # เมื่อเขาเข้ามาที่หน้านี้ เขาจึงใส่รหัสเก่าของเขาที่ช่อง Old password
+        old_password = self.browser.find_element_by_id('id_old_password')
+        old_password.send_keys('mok123456789')
+
+        # จากนั้นเขาก็ใส่รหัสใหม่ของเขาคือ mok987654321
+        new_password1 = self.browser.find_element_by_id('id_new_password1')
+        new_password1.send_keys('mok987654321')
+
+        # เเละยืนยันรหัสอีก 1 รอบ
+        new_password2 = self.browser.find_element_by_id('id_new_password2')
+        new_password2.send_keys('mok987654321')
+
+        # เเละกดปุ่ม Enter
+        new_password2.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # เขาสังเกตเห็นคำว่า Password changed with success
+        success_text = self.browser.find_element_by_tag_name('p').text
+        self.assertIn('Password changed with success!!!', success_text)
+
+        # เเละเห็นคำว่า Logout ที่มันสามารถกดได้
+        # เขาจึงกดคำนั้นเพื่อ Login ใหม่อีกครั้ง
+        link_logout = self.browser.find_element_by_id('id_logout')
+        link_logout.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # เขามาที่หน้า Login เเล้ว เขาจึงใส่รหัสใหม่ทันที
+        self.assertIn('Login', self.browser.title)
+
+        # เขาพิมพ์ Username เเละ password ลงไป
+        # เขาจึงใส่ username เป็น somsak
+        inputusername_login = self.browser.find_element_by_id('id_username')
+        inputusername_login.send_keys('somsak')
+
+        # ต่อมาเขาใส่รหัสเป็น mok987654321
+        inputpassword = self.browser.find_element_by_id('id_password')
+        inputpassword.send_keys('mok987654321')
+
+        # จากนั้นเขาจึงกดปุ่ม Enter
+        inputpassword.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # เเละในที่สุดรหัสของเขาก็ได้ถูกเปลี่ยนไปเเล้ว
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Welcome to EDU-Match', header_text)
+
+        self.fail('Finish the test!')
+
 
     def test_to_search_for_matching(self):
         self.browser.get(self.live_server_url + '/signup')
