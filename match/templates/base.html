@@ -19,7 +19,7 @@
             <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" id="id_profile" href="/profile/{{ user.pk }}">Profile</a>
+            <a class="nav-link" id="id_profile" href="/profile/">Profile</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="{% url 'profile_add_subject' %}">Add Subject</a>
@@ -42,7 +42,7 @@
             </li>
             </ul>
             <a class="btn btn-outline-success  mr-sm-1" href="{% url 'login' %}">Log in</a>
-            <a class="btn btn-outline-warning  my-sm-0" href="{% url 'signup' %}">Sign Up</a>
+            <a class="btn btn-outline-warning  my-sm-0" href="{% url 'SignUpView' %}">Sign Up</a>
             {% endif %}
         </div>
       </nav>
@@ -51,7 +51,15 @@
     <br>
     <br>
     <hr>
+    {% if messages %}
+        {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock %}
+
 </body>
 </html>

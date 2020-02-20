@@ -2,14 +2,17 @@ from django.urls import path,include
 from match.views import SignUpView , ProfileView
 from . import views
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
+from django.conf import settings
+from django.contrib.staticfiles.urls import static
 
 app_name = 'match'
 urlpatterns = [
     # ex: /match/
     path('chat/', include('chat.urls')),
     path('', views.home, name='home'),
-    path('signup/',SignUpView.as_view(), name='signup'),
-    path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
+    path('signup/',views.SignUpView, name='SignUpView'),
+    path('profile/', views.ProfileView, name='ProfileView'),
     path('view_profile/<str:name>', views.view_other_profile, name='view_profile'),
     path('view_profile_R/<str:name>', views.view_r_profile, name='view_profile_R'),
     path('friendmatched/', views.friendmatched, name='friendmatched'),
@@ -33,4 +36,10 @@ urlpatterns = [
         name='change_password'
     ),
     path('accounts/change_password/done', views.change_password_done, name='change_password_done'),
+    path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
+#path('signup/',SignUpView.as_view(), name='signup'),

@@ -47,7 +47,10 @@ class SignUpTest(TestCase):
 
 class ChangeFirstNameTest(TestCase):
     def test_change_first_name(self):
-        self.user1 = User.objects.create_user(username='testuser', first_name = 'firstname' , password='Password12345', email='test@example.com')
+        self.user1 = User.objects.create_user(username='testuser',
+                                              first_name = 'firstname' ,
+                                              password='Password12345',
+                                              email='test@example.com')
         self.user1.save()
 
         users = User.objects.get(username='testuser')
@@ -64,7 +67,9 @@ class ChangeFirstNameTest(TestCase):
 
 class ChangePasswordTest(TestCase):
     def test_change_password(self):
-        self.user1 = User.objects.create_user(username='testuser', password='Password12345', email='test@example.com')
+        self.user1 = User.objects.create_user(username='testuser',
+                                              password='Password12345',
+                                              email='test@example.com')
         self.user1.save()
 
         users = User.objects.get(username='testuser')

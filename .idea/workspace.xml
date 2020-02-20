@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/match/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/default.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/registration/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/registration/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +65,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../signup_project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -220,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582041500558</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Unitest Test SignUpTest ChangeFirstNameTest ChangePasswordTest">
+      <created>1582109126525</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1582109126525</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +257,8 @@
     <MESSAGE value="Create Admin function" />
     <MESSAGE value="User can reset password when user forgot password" />
     <MESSAGE value="Functional test user can change password" />
-    <option name="LAST_COMMIT_MESSAGE" value="Functional test user can change password" />
+    <MESSAGE value="Unitest Test SignUpTest ChangeFirstNameTest ChangePasswordTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unitest Test SignUpTest ChangeFirstNameTest ChangePasswordTest" />
   </component>
   <component name="WindowStateProjectService">
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581873852939">
@@ -245,16 +266,16 @@
     </state>
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1325.741@0.27.1325.741" timestamp="1581873852939" />
     <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1581280199649" />
-    <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1582109094852">
+    <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1582109126369">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
     <state x="269" y="27" width="754" height="741" key="CommitChangelistDialog2/0.27.1325.741@0.27.1325.741" timestamp="1581883074652" />
-    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1582109094852" />
+    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1582109126369" />
     <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580673952836" />
-    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582036534894">
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582219498458">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1582036534894" />
+    <state x="466" y="135" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.702@0.27.1366.702" timestamp="1582219498458" />
     <state width="1343" height="163" key="GridCell.Tab.0.bottom" timestamp="1580796205503">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
@@ -279,10 +300,10 @@
       <screen x="0" y="27" width="1325" height="741" />
     </state>
     <state width="332" height="478" key="HiddenNamespacesPopup/0.27.1325.741@0.27.1325.741" timestamp="1581901729579" />
-    <state x="144" y="27" width="1423" height="1000" key="SettingsEditor" timestamp="1582041514038">
+    <state x="203" y="27" width="1423" height="1000" key="SettingsEditor" timestamp="1582227809709">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="144" y="27" width="1012" height="702" key="SettingsEditor/0.27.1366.702@0.27.1366.702" timestamp="1582041514038" />
+    <state x="203" y="27" width="1012" height="702" key="SettingsEditor/0.27.1366.702@0.27.1366.702" timestamp="1582227809709" />
     <state x="202" y="27" width="1423" height="1000" key="SettingsEditor/0.27.1920.1000@0.27.1920.1000" timestamp="1580334711947" />
     <state x="207" y="32" key="SettingsEditor/70.27.1296.741@70.27.1296.741" timestamp="1579115344094" />
     <state x="526" y="295" width="303" height="164" key="VCS.ChangelistChooser" timestamp="1580796160933">
@@ -302,10 +323,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="728" y="446" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1000@0.27.1920.1000" timestamp="1580671228038" />
-    <state x="331" y="83" width="863" height="646" key="find.popup" timestamp="1582036160412">
+    <state x="331" y="83" width="863" height="646" key="find.popup" timestamp="1582219475322">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
-    <state x="331" y="83" width="863" height="646" key="find.popup/0.27.1366.702@0.27.1366.702" timestamp="1582036160412" />
+    <state x="331" y="83" width="863" height="646" key="find.popup/0.27.1366.702@0.27.1366.702" timestamp="1582219475322" />
     <state x="624" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1579105516931">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>

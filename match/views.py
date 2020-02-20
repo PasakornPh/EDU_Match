@@ -1,12 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from match.models import human,Subject,Matched,Wantmatch
+# Add
+from django.contrib import messages
+
+from match.models import human,Subject,Matched,Wantmatch,Profile
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView , UpdateView
 
-from match.forms import SignUpForm , ProfileForm
+from match.forms import SignUpForm , ProfileForm , ProfileUpdateForm
 
 def home(request):
 
@@ -28,18 +31,47 @@ def home(request):
             })
 
 # Sign Up View
-class SignUpView(CreateView):
-    form_class = SignUpForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
-
+#class SignUpView(CreateView):
+    #form_class = SignUpForm
+    #success_url = reverse_lazy('login')
+    #template_name = 'registration/signup.html'
+def SignUpView(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username_signup = form.cleaned_data.get('username')
+            messages.success(request,f'Account created for { username_signup }!')
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    return render(request,'registration/signup.html',{'form' : form})
 
 # Edit Profile View
-class ProfileView(UpdateView):
-    model = User
-    form_class = ProfileForm
-    success_url = reverse_lazy('home')
-    template_name = 'registration/profile.html'
+def ProfileView(request):
+    if request.method == 'POST':
+        form_class = ProfileForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if form_class.is_valid() and p_form.is_valid():
+            form_class.save()
+            p_form.save()
+            messages.success(request,f'You account has been Updated!')
+            return redirect('ProfileView')
+    else:
+        form_class = ProfileForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {'form_class' : form_class, 'p_form' : p_form }
+    return render(request,'registration/profile.html',context)
+
+#class ProfileView(UpdateView):
+    #model = User
+    #form_class = ProfileForm
+    #p_form = ProfileUpdateForm
+    #success_url = reverse_lazy('home')
+    #template_name = 'registration/profile.html'
 
 def request_match(request):
     Nosent="No one sent you a matching"
