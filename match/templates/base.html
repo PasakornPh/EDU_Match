@@ -22,13 +22,13 @@
             <a class="nav-link" id="id_profile" href="/profile/">Profile</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile_add_subject' %}">Add Subject</a>
+            <a class="nav-link" href="{% url 'profile_add_subject' %}">Add expert subject</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{% url 'friendmatched' %}">Friend matched</a>
+            <a class="nav-link" href="{% url 'friendmatched' %}">My tutor&student</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{% url 'request_match' %}"> {% if wantmatchcount %} <span class="badge badge-pill badge-danger">{{ wantmatchcount }}</span> {% endif %} Request to matching</a>
+            <a class="nav-link" href="{% url 'request_match' %}"> {% if wantmatchcount %} <span class="badge badge-pill badge-danger">{{ wantmatchcount }}</span> {% endif %} Tutor reguest</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="/accounts/change_password">Change Password</a>

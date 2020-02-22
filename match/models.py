@@ -8,6 +8,8 @@ class human(models.Model):
     subject = models.ManyToManyField('Subject')
     wantmatch = models.ManyToManyField('Wantmatch')
     matched = models.ManyToManyField('Matched')
+    tutor = models.ManyToManyField('Tutor')
+    student = models.ManyToManyField('Student')
     def __str__(self):
         return self.name
 
@@ -25,8 +27,19 @@ class Wantmatch(models.Model):
 
     def __str__(self):
         return self.name
-
 class Matched(models.Model):
+
+    name = models.CharField(max_length=211111111111)
+
+    def __str__(self):
+        return self.name
+class Tutor(models.Model):
+
+    name = models.CharField(max_length=211111111111)
+
+    def __str__(self):
+        return self.name
+class Student(models.Model):
 
     name = models.CharField(max_length=211111111111)
 

@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Add
 from django.contrib import messages
 
-from match.models import human,Subject,Matched,Wantmatch,Profile
+from match.models import human,Subject,Matched,Wantmatch,Profile,Tutor,Student
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView , UpdateView
@@ -82,13 +82,13 @@ def request_match(request):
     return render(request,"recievematch.html",{'Nosent': Nosent})
 
 def friendmatched(request):
-    User1=human.objects.get(name=request.user.username)
-    User1.matched.all()
     Nomatched = "You didn't match anyone"
     User1 = human.objects.get(name=request.user.username)
-    if User1.matched.all():
-        allmatched = User1.matched.all()
-        return render(request, "Friend_matched.html", {'allmatched': allmatched, 'count': allmatched.count()})
+    if User1.tutor.all() or User1.student.all():
+        alltutor = User1.tutor.all()
+        allstudent = User1.student.all()
+        countall = alltutor.count() + allstudent.count()
+        return render(request, "Friend_matched.html", {'alltutor': alltutor,'allstudent':allstudent, 'count': countall })
     return render(request, "Friend_matched.html", {'Nomatched': Nomatched})
 
 def friendprofile(request,name):
@@ -117,21 +117,32 @@ def view_other_profile(request,name):
             ,'lastname': Selecteduser.last_name, 'email':Selecteduser.email , 'name': username })
 
 def unfriendmatched(request,name):
-    User1 = human.objects.get(name=request.user.username)
-    Selunmatched=User1.matched.get(name=name)
-    Selunmatched.delete()
+    myself = get_object_or_404(human, name=request.user.username)
+    if myself.student.filter(name=name).exists():
+        Selunmatched=myself.student.get(name=name)
+        Selunmatched.delete()
+    if myself.tutor.filter(name=name).exists():
+        Selunmatched2=myself.tutor.get(name=name)
+        Selunmatched2.delete()
 
-    User2 = human.objects.get(name=name)
-    Selunmatched2=User2.matched.get(name=request.user.username)
-    Selunmatched2.delete()
+    User2 = get_object_or_404(human, name=name)
+    if User2.tutor.filter(name=request.user.username).exists():
+        Selunmatched3=User2.tutor.get(name=request.user.username)
+        Selunmatched3.delete()
+    if User2.student.filter(name=request.user.username).exists():
+        Selunmatched4=User2.student.get(name=request.user.username)
+        Selunmatched4.delete()
 
 
-    User1.matched.all()
+
+    myself.tutor.all()
     Nomatched = "You didn't match anyone"
     User1 = human.objects.get(name=request.user.username)
-    if User1.matched.all():
-        allmatched = User1.matched.all()
-        return render(request, "Friend_matched.html", {'allmatched': allmatched, 'count': allmatched.count()})
+    if User1.tutor.all() or User1.student.all():
+        alltutor = User1.tutor.all()
+        allstudent = User1.student.all()
+        countall=alltutor.count()+allstudent.count()
+        return render(request, "Friend_matched.html", {'alltutor': alltutor,'allstudent':allstudent, 'count': countall })
     return render(request, "Friend_matched.html", {'Nomatched': Nomatched})
 
 def acceptmatch(request,name):
@@ -139,20 +150,20 @@ def acceptmatch(request,name):
     username = Selecteduser.username
     User1 = human.objects.get(name=request.user.username)
     # User1= human.objects.get(pk=1).delete()
-    User2 = get_object_or_404(human, name=request.user.username)
-    User3 = get_object_or_404(human, name=name)
-    selected_unmatch = User2.wantmatch.get(name=name)
+    tutorself = get_object_or_404(human, name=request.user.username)
+    studentself = get_object_or_404(human, name=name)
+    selected_unmatch = tutorself.wantmatch.get(name=name)
     selected_unmatch.delete()
-    if not Matched.objects.filter(name=name).exists():
-        firstsubject = Matched(name=name)
-        firstsubject.save()
-    if not Matched.objects.filter(name=request.user.username).exists():
-        firstsubject = Matched(name=request.user.username)
-        firstsubject.save()
-    fmatched=Matched.objects.get(name=name)
-    fmatched2=Matched.objects.get(name=request.user.username)
-    User2.matched.add(fmatched)
-    User3.matched.add(fmatched2)
+    if not Student.objects.filter(name=name).exists():
+        student = Student(name=name)
+        student.save()
+    if not Tutor.objects.filter(name=request.user.username).exists():
+        tutor = Tutor(name=request.user.username)
+        tutor.save()
+    fstudent=Student.objects.get(name=name)
+    ftutor=Tutor.objects.get(name=request.user.username)
+    tutorself.student.add(fstudent)
+    studentself.tutor.add(ftutor)
     Nosent = "No one sent you a matching"
     User1 = human.objects.get(name=request.user.username)
     if User1.wantmatch.all():
@@ -177,18 +188,27 @@ def declinematch(request,name):
 
 def searching(request):
     count = User.objects.count()
-    if not Subject.objects.filter(name=request.POST.get('item_subject2', '')).exists():
+    User1 = human.objects.get(name=request.user.username)
+    if not Subject.objects.filter(name=request.POST.get('item_subject2', '')).exclude(name=(subject.name for subject in User1.subject.all())).exists():
         Noresult = 'No users were found matching'
         return render(request, 'home.html', {'Noresult': Noresult,'count' : count})
+    subinmyself = Subject.objects.filter(name=request.POST.get('item_subject2', ''))
+    for subject in User1.subject.all():
+        subinmyself=subinmyself.exclude(name=subject.name)
+    if not subinmyself.exists():
+        Noresult = 'No users were found matching'
+        return render(request, 'home.html', {'Noresult': Noresult, 'count': count})
     firstsubject = Subject.objects.get(name=request.POST.get('item_subject2', ''))
     first= firstsubject.human_set.all().exclude(name=request.user.username)
-    User1=human.objects.get(name=request.user.username)
-
-    for matched in User1.matched.all():
-        first= first.exclude(name=matched)
-
+    second= firstsubject.human_set.all().exclude(name=request.user.username)
+    for tutor in User1.tutor.all():
+        first= first.exclude(name=tutor.name)
+    for student in User1.student.all():
+        first=first.exclude(name=student.name)
+    for human_set in first:
+        second=second.exclude(name=human_set.name)
     #    fisubject.add(Subject)
-    return render(request, 'home.html', {'usermatched': User1.matched.all(),'userins': first,'count': count})
+    return render(request, 'home.html', {'usertutorstu': second,'userins': first,'count': count})
 
 
 def profile_add_subject(request):

@@ -9,12 +9,24 @@
 
 
 <br>
-{% if allmatched %}
+{% if alltutor or allstudent%}
+        {% if alltutor %}
         <table id="id_list_matching">
-            {% for matched in allmatched %}
-            <tr><td>{{ forloop.counter }}: {{ matched }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' matched   %}'"> Profile </button>  <br></td></tr>
+            My Tutor
+            {% for tutor in alltutor %}
+            <tr><td>{{ forloop.counter }}: {{ tutor }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button>  <br></td></tr>
             {% endfor %}
         </table>
+<br>
+{% endif %}
+{% if allstudent %}
+        <table id="id_list_matching2">
+            My Student
+            {% for student in allstudent %}
+            <tr><td>{{ forloop.counter }}: {{ student }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' student   %}'"> Profile </button>  <br></td></tr>
+            {% endfor %}
+        </table>
+{% endif %}
 {% elif Nomatched %}
 <ul> {{ Nomatched }} </ul>
 
