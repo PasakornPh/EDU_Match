@@ -5,10 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/Friend_matched.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/Friend_matched.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/add_subject.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/add_subject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/other_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/other_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,11 +252,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Unitest Test SignUpTest ChangeFirstNameTest ChangePasswordTest" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581873852939">
-      <screen x="0" y="27" width="1325" height="741" />
+    <state x="693" y="275" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582368413057">
+      <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1325.741@0.27.1325.741" timestamp="1581873852939" />
-    <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1581280199649" />
+    <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1582368413057" />
     <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1582109126369">
       <screen x="0" y="27" width="1366" height="702" />
     </state>

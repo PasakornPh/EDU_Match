@@ -10,6 +10,7 @@ class human(models.Model):
     matched = models.ManyToManyField('Matched')
     tutor = models.ManyToManyField('Tutor')
     student = models.ManyToManyField('Student')
+    review=models.ManyToManyField('Review')
     def __str__(self):
         return self.name
 
@@ -56,3 +57,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+class Review(models.Model):
+    name = models.CharField(max_length=211111111111)
+    realname=models.CharField(max_length=211111111111)
+    message = models.CharField(max_length=211111111111)

@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Add
 from django.contrib import messages
 
-from match.models import human,Subject,Matched,Wantmatch,Profile,Tutor,Student
+from match.models import human,Subject,Matched,Wantmatch,Profile,Tutor,Student,Review
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView , UpdateView
@@ -72,6 +72,27 @@ def ProfileView(request):
     #p_form = ProfileUpdateForm
     #success_url = reverse_lazy('home')
     #template_name = 'registration/profile.html'
+def write_review(request,profilename):
+    Selecteduser = User.objects.get_by_natural_key(profilename)
+    username = Selecteduser.username
+    User1 = human.objects.get(name=profilename)
+    if request.POST.get('item_review', ''):
+        if not Review.objects.filter(name=request.user.username+profilename).exists():
+            firstreview=Review.objects.create(name=request.user.username+profilename)#commentname+profilename
+            firstreview.save()
+            User1.review.add(firstreview)
+        getreview=Review.objects.get(name=request.user.username+profilename)
+        getreview.realname=request.user.username
+        getreview.message=request.POST.get('item_review', '')
+        getreview.save()
+        usercommall=User1.review.all()
+        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
+    else:
+        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})
+
+
 
 def request_match(request):
     Nosent="No one sent you a matching"
@@ -81,6 +102,7 @@ def request_match(request):
         return render(request,"recievematch.html",{'allwantmatch': allwantmatch, 'count' : allwantmatch.count()})
     return render(request,"recievematch.html",{'Nosent': Nosent})
 
+#เข้าหน้า My tutor$student
 def friendmatched(request):
     Nomatched = "You didn't match anyone"
     User1 = human.objects.get(name=request.user.username)
@@ -100,8 +122,16 @@ def friendprofile(request,name):
 def view_r_profile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
-    return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})
+    User1 = human.objects.get(name=name)
+    usercommall = User1.review.all()
+    if usercommall.count>0:
+        return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
+    else:
+        Nocomment="โนคอมเม้นเน้นคอมโบ"
+        return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                        'Nocomment': Nocomment})
 
 def view_other_profile(request,name):
     Selecteduser=User.objects.get_by_natural_key(name)
@@ -109,12 +139,27 @@ def view_other_profile(request,name):
     User1= human.objects.get(name=name)
     if User1.wantmatch.filter(name=request.user.username):
         checked=1
-        return render(request, 'other_profile.html',
-                      {'username': username, 'firstname': Selecteduser.first_name, 'lastname': Selecteduser.last_name,
-                       'email': Selecteduser.email, 'name': username ,'checked' : checked })
+        usercommall = User1.review.all()
+        if usercommall.count() > 0:
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'usercomall': usercommall,'checked' : checked })
+        else:
+            Nocomment = "โนคอมเม้นเน้นคอมโบ"
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'Nocomment': Nocomment,'checked' : checked })
     else:
-        return render(request, 'other_profile.html', {'username': username ,'firstname': Selecteduser.first_name
-            ,'lastname': Selecteduser.last_name, 'email':Selecteduser.email , 'name': username })
+        usercommall = User1.review.all()
+        if usercommall.count() > 0:
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'usercomall': usercommall})
+        else:
+            Nocomment = "โนคอมเม้นเน้นคอมโบ"
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'Nocomment': Nocomment})
 
 def unfriendmatched(request,name):
     myself = get_object_or_404(human, name=request.user.username)
@@ -229,13 +274,28 @@ def matching(request,name):
 
     User1 = human.objects.get(name=name)
     if User1.wantmatch.filter(name=request.user.username):
-        checked=User1.wantmatch.all().count()
-        return render(request, 'other_profile.html',
-                      {'username': username, 'firstname': Selecteduser.first_name, 'lastname': Selecteduser.last_name,
-                       'email': Selecteduser.email, "checked": checked})
-    return render(request, 'other_profile.html',
-                  {'username': username, 'firstname': Selecteduser.first_name, 'lastname': Selecteduser.last_name,
-                   'email': Selecteduser.email})
+        checked=1
+        usercommall = User1.review.all()
+        if usercommall.count() > 0:
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'usercomall': usercommall,'checked' : checked })
+        else:
+            Nocomment = "โนคอมเม้นเน้นคอมโบ"
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'Nocomment': Nocomment,'checked' : checked })
+    else:
+        usercommall = User1.review.all()
+        if usercommall.count() > 0:
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'usercomall': usercommall})
+        else:
+            Nocomment = "โนคอมเม้นเน้นคอมโบ"
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                            'Nocomment': Nocomment})
 
 
 def unmatching(request,name):
@@ -251,11 +311,16 @@ def unmatching(request,name):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
     checked=0
-
-    return render(request, 'other_profile.html',
-                  {'username': username, 'firstname': Selecteduser.first_name, 'lastname': Selecteduser.last_name,
-                   'email': Selecteduser.email })
-
+    usercommall = User1.review.all()
+    if usercommall.count() > 0:
+        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                        'usercomall': usercommall})
+    else:
+        Nocomment = "โนคอมเม้นเน้นคอมโบ"
+        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                        'Nocomment': Nocomment})
 def add_subject(request):
     if not Subject.objects.filter(name=request.POST.get('item_subject', '')).exists():
         firstsubject = Subject(name=request.POST.get('item_subject', ''))

@@ -19,4 +19,22 @@
         <br><br>
         <a href="{% url 'home' %}">Back</a>
     </form>
+<br><br>
+<h3>Review</h3>
+<br>
+{% if usercomall %}
+{% for review in usercomall %}
+{% csrf_token %}
+    <tr><td> - {{ review.realname }} : {{ review.message }}             </td></tr>
+{% endfor %}
+{% endif %}
+{% if Nocomment %}
+{{ Nocomment }}
+{% endif %}
+<br><br>
+<form action="{% url 'write_review' username %}" method="post">{% csrf_token %}
+    <input name="item_review" id="id_review" placeholder="Write your Comment Here" />
+    <button type="submit" class="btn btn-secondary btn-sm"> Enter </button>
+</form>
+<br>
 {% endblock content %}

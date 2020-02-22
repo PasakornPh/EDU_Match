@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('profile_add_subject/', views.profile_add_subject,name='profile_add_subject'),
     path('add_subject/', views.add_subject, name='add_subject'),
+    path('write_review/<str:profilename>', views.write_review, name='write_review'),
     path('clean_model/', views.clean_model, name='clean'),
     path('search/', views.searching, name='search'),
     path('accounts/change_password/',
