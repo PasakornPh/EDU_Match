@@ -91,8 +91,14 @@ def write_review(request,profilename):
     else:
         return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})
-
-
+def delete_review(request,profilename):
+    Selecteduser = User.objects.get_by_natural_key(profilename)
+    username = Selecteduser.username
+    User1 = human.objects.get(name=profilename)
+    User1.review.get(name=request.user.username+profilename).delete()
+    usercommall = User1.review.all()
+    return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username, 'usercomall': usercommall})
 
 def request_match(request):
     Nosent="No one sent you a matching"
@@ -124,7 +130,7 @@ def view_r_profile(request,name):
     username = Selecteduser.username
     User1 = human.objects.get(name=name)
     usercommall = User1.review.all()
-    if usercommall.count>0:
+    if usercommall.count()>0:
         return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
     else:
