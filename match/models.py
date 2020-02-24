@@ -61,3 +61,4 @@ class Review(models.Model):
     name = models.CharField(max_length=211111111111)
     realname=models.CharField(max_length=211111111111)
     message = models.CharField(max_length=211111111111)
+    star =models.IntegerField(null=True)

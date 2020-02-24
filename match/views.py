@@ -84,8 +84,17 @@ def write_review(request,profilename):
         getreview=Review.objects.get(name=request.user.username+profilename)
         getreview.realname=request.user.username
         getreview.message=request.POST.get('item_review', '')
+        getrating = request.POST.getlist('star', '')
+        if getrating:
+            getreview.star = getrating[0]
+        else:
+            getreview.star = 0
         getreview.save()
         usercommall=User1.review.all()
+        alluser= User.objects.all()
+        print(getrating)
+        for i in alluser:
+            alluser.exclude
         return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
     else:
