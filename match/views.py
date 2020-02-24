@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Add
 from django.contrib import messages
 
-from match.models import human,Subject,Matched,Wantmatch,Profile,Tutor,Student,Review
+from match.models import human,Subject,Matched,Wantmatch,Profile,Tutor,Student,Review,Chatroomname
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView , UpdateView
@@ -124,6 +124,7 @@ def friendmatched(request):
     if User1.tutor.all() or User1.student.all():
         alltutor = User1.tutor.all()
         allstudent = User1.student.all()
+
         countall = alltutor.count() + allstudent.count()
         return render(request, "Friend_matched.html", {'alltutor': alltutor,'allstudent':allstudent, 'count': countall })
     return render(request, "Friend_matched.html", {'Nomatched': Nomatched})
@@ -152,18 +153,30 @@ def view_other_profile(request,name):
     Selecteduser=User.objects.get_by_natural_key(name)
     username=Selecteduser.username
     User1= human.objects.get(name=name)
+
+    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
+
+        chatname=Chatroomname.objects.create(name=Selecteduser.username+request.user.username)
+        chatname.save()
+    chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
+    human.objects.get(name=name).chatroomname.add(chatnamer)
+    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+    User2=''
+    for i in User1.chatroomname.all():
+        if (request.user.username in i.name ) and (name in i.name):
+            User2=i.name
     if User1.wantmatch.filter(name=request.user.username):
         checked=1
         usercommall = User1.review.all()
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'checked' : checked })
+                                                            'usercomall': usercommall,'checked' : checked,'id':User2 })
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'Nocomment': Nocomment,'checked' : checked })
+                                                            'Nocomment': Nocomment,'checked' : checked ,'id':User2})
     else:
         usercommall = User1.review.all()
         if usercommall.count() > 0:

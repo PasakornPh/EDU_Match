@@ -15,6 +15,7 @@
             My Tutor
             {% for tutor in alltutor %}
             <tr><td>{{ forloop.counter }}: {{ tutor }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button>  <br></td></tr>
+
             {% endfor %}
         </table>
 <br>
@@ -23,7 +24,7 @@
         <table id="id_list_matching2">
             My Student
             {% for student in allstudent %}
-            <tr><td>{{ forloop.counter }}: {{ student }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' student   %}'"> Profile </button>  <br></td></tr>
+            <tr><td>{{ forloop.counter }}: {{ student }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' student   %}'"> Profile </button> <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'room' student %}'"> Message </button>  <br></td></tr>
             {% endfor %}
         </table>
 {% endif %}

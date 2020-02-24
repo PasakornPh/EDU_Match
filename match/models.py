@@ -11,6 +11,7 @@ class human(models.Model):
     tutor = models.ManyToManyField('Tutor')
     student = models.ManyToManyField('Student')
     review=models.ManyToManyField('Review')
+    chatroomname = models.ManyToManyField('Chatroomname')
     def __str__(self):
         return self.name
 
@@ -62,3 +63,5 @@ class Review(models.Model):
     realname=models.CharField(max_length=211111111111)
     message = models.CharField(max_length=211111111111)
     star =models.IntegerField(null=True)
+class Chatroomname(models.Model):
+    name= models.CharField(max_length=211111111111,null=True)
