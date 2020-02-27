@@ -8,7 +8,7 @@
     <h2>{{ username }}'s profile</h2>
     <form method="post">
         {% csrf_token %}
-        <p>Username   : {{ username }} </p>
+        <p>Username   : {{ username }}: id == {{ id }}</p>
         <p>First name : {{ firstname }} </p>
         <p>Last  name : {{ lastname }} </p>
         <p>Email address     : {{ email }} </p>
