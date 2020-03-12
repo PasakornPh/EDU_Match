@@ -125,7 +125,7 @@ def write_review(request,profilename):
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
         else:
-            nomessage='Please type your message before comment'
+            nomessage='Please type your message before Review'
             usercommall = Review.objects.filter(post=User1)
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email,'nomessage':nomessage, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
@@ -145,7 +145,7 @@ def write_review(request,profilename):
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                           'usercomall': usercommall, 'id': User2})
         else:
-            nomessage = 'Please type your message before comment'
+            nomessage = 'Please type your message before Review'
             usercommall = Review.objects.filter(post=User1)
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'nomessage': nomessage,
