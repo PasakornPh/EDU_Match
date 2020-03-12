@@ -108,14 +108,7 @@ def write_review(request,profilename):
     for i in User1.chatroomname.all():
         if (request.user.username in i.name) and (profilename in i.name):
             User2 = i.name
-    if request.POST.get('item_review', ''):
-        getrating = request.POST.getlist('star', '')
-        if getrating:
-            starrating = getrating[0]
-        else:
-            starrating = 0
-        Review.objects.create(post=User1, realname=request.user.username, star=starrating,
-                              message=request.POST.get('item_review', ''))
+
 
     usercommall = Review.objects.filter(post=User1)
     if User1.wantmatch.filter(name=request.user.username):
