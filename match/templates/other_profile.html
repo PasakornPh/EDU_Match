@@ -8,7 +8,7 @@
     <h2>{{ username }}'s profile</h2>
     <form method="post">
         {% csrf_token %}
-        <p>Username   : {{ username }}: id == {{ id }}</p>
+        <p>Username   : {{ username }}</p>
         <p>First name : {{ firstname }} </p>
         <p>Last  name : {{ lastname }} </p>
         <p>Email address     : {{ email }} </p>
@@ -26,21 +26,7 @@
 <br><br>
 <h3 class="font-weight-bold">Review</h3>
 <br>
-{% if usercomall %}
-{% for review in usercomall %}
-{% csrf_token %}
-<tr><td> - <b>{{ review.realname }}</b> : Rate {{review.star}}  {% if review.realname == user.username %} <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'delete_review' username   %}'"> &#x274C </button> {% endif %} <br> {{ review.message }}   <br></td></tr>
-{% endfor %}
-{% endif %}
-{% if Nocomment %}
-{{ Nocomment }}
-{% endif %}
-
-
-
-<br><br>
-
-        <div class="comments" style="padding: 10px;">
+<div class="comments" style="padding: 10px;">
             <h4 class="font-weight-bold"> Leave a review </h4><br>
             <p class="font-weight-bold">Name : {{ user.username }}</p>
 
@@ -61,6 +47,21 @@
 </div>
     <button type="submit" class="btn btn-secondary btn-sm"> Enter </button>
 </form>
+    {% if nomessage %} {{nomessage}}{% endif %}
 </div>
+<br>
+{% if usercomall %}
+{% for review in usercomall %}
+{% csrf_token %}
+<tr><td> - <b>{{ review.realname }}</b> : Rate {{review.star}} <br> {{ review.message }}   <br></td></tr>
+{% endfor %}
+{% endif %}
+{% if Nocomment %}
+{{ Nocomment }}
+{% endif %}
+
+
+
+
 <br>
 {% endblock content %}

@@ -39,7 +39,7 @@ body
     position: absolute;
     display: block;
     font-size: 20px;
-    color: #1f9cff;
+    color: #ffff00;
     top: 0;
     opacity: 0;
     transition: .5s;

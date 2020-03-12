@@ -72,7 +72,7 @@ def ProfileView(request):
     #p_form = ProfileUpdateForm
     #success_url = reverse_lazy('home')
     #template_name = 'registration/profile.html'
-def write_review(request,profilename):
+'''def write_review(request,profilename):
     Selecteduser = User.objects.get_by_natural_key(profilename)
     username = Selecteduser.username
     User1 = human.objects.get(name=profilename)
@@ -99,15 +99,69 @@ def write_review(request,profilename):
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
     else:
         return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})
-def delete_review(request,profilename):
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})'''
+def write_review(request,profilename):
     Selecteduser = User.objects.get_by_natural_key(profilename)
     username = Selecteduser.username
     User1 = human.objects.get(name=profilename)
-    User1.review.get(name=request.user.username+profilename).delete()
-    usercommall = User1.review.all()
-    return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username, 'usercomall': usercommall})
+    User2 = ''
+    for i in User1.chatroomname.all():
+        if (request.user.username in i.name) and (profilename in i.name):
+            User2 = i.name
+    if request.POST.get('item_review', ''):
+        getrating = request.POST.getlist('star', '')
+        if getrating:
+            starrating = getrating[0]
+        else:
+            starrating = 0
+        Review.objects.create(post=User1, realname=request.user.username, star=starrating,
+                              message=request.POST.get('item_review', ''))
+
+    usercommall = Review.objects.filter(post=User1)
+    if User1.wantmatch.filter(name=request.user.username):
+        checked=1
+        if request.POST.get('item_review', ''):
+            getrating = request.POST.getlist('star', '')
+            if getrating:
+                starrating = getrating[0]
+            else:
+                starrating = 0
+            Review.objects.create(post=User1,realname=request.user.username, star=starrating,message=request.POST.get('item_review', ''))
+
+            usercommall=Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
+        else:
+            nomessage='Please type your message before comment'
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email,'nomessage':nomessage, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
+
+    else:
+        if request.POST.get('item_review', ''):
+            getrating = request.POST.getlist('star', '')
+            if getrating:
+                starrating = getrating[0]
+            else:
+                starrating = 0
+            Review.objects.create(post=User1, realname=request.user.username, star=starrating,
+                                  message=request.POST.get('item_review', ''))
+
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                          'usercomall': usercommall, 'id': User2})
+        else:
+            nomessage = 'Please type your message before comment'
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'nomessage': nomessage,
+                                                          'name': username, 'usercomall': usercommall, 'id': User2})
+
+
+def delete_review(request,profilename):
+    pass
+    return render(request, 'other_profile.html')
 
 def request_match(request):
     Nosent="No one sent you a matching"
@@ -139,7 +193,7 @@ def view_r_profile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
     User1 = human.objects.get(name=name)
-    usercommall = User1.review.all()
+    usercommall = Review.objects.filter(post=User1)
     if usercommall.count()>0:
         return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
@@ -167,7 +221,7 @@ def view_other_profile(request,name):
             User2=i.name
     if User1.wantmatch.filter(name=request.user.username):
         checked=1
-        usercommall = User1.review.all()
+        usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -178,7 +232,7 @@ def view_other_profile(request,name):
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                             'Nocomment': Nocomment,'checked' : checked ,'id':User2})
     else:
-        usercommall = User1.review.all()
+        usercommall =Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -313,7 +367,7 @@ def matching(request,name):
             User2=i.name
     if User1.wantmatch.filter(name=request.user.username):
         checked=1
-        usercommall = User1.review.all()
+        usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -324,7 +378,7 @@ def matching(request,name):
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                             'Nocomment': Nocomment,'checked' : checked ,'id':User2})
     else:
-        usercommall = User1.review.all()
+        usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -361,7 +415,7 @@ def unmatching(request,name):
             User2 = i.name
     if User1.wantmatch.filter(name=request.user.username):
         checked = 1
-        usercommall = User1.review.all()
+        usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -372,7 +426,7 @@ def unmatching(request,name):
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                           'Nocomment': Nocomment, 'checked': checked, 'id': User2})
     else:
-        usercommall = User1.review.all()
+        usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,

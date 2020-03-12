@@ -10,7 +10,6 @@ class human(models.Model):
     matched = models.ManyToManyField('Matched')
     tutor = models.ManyToManyField('Tutor')
     student = models.ManyToManyField('Student')
-    review=models.ManyToManyField('Review')
     chatroomname = models.ManyToManyField('Chatroomname')
     def __str__(self):
         return self.name
@@ -59,9 +58,15 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 class Review(models.Model):
-    name = models.CharField(max_length=211111111111)
+    post = models.ForeignKey(human, on_delete=models.CASCADE, related_name='comments',null=True)
+    created_on = models.DateTimeField(auto_now_add=True,null=True)
     realname=models.CharField(max_length=211111111111)
     message = models.CharField(max_length=211111111111)
     star =models.IntegerField(null=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+
 class Chatroomname(models.Model):
     name= models.CharField(max_length=211111111111,null=True)
