@@ -179,27 +179,41 @@ def friendmatched(request):
 def friendprofile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
+
+    # Profile
+    user = User.objects.filter(username=username).first()
+    user_profile = user.profile.image.url
+
     return render(request, 'Friend_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})
+        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username ,'user_profile':user_profile})
 
 def view_r_profile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
+
+    # Profile
+    user = User.objects.filter(username=username).first()
+    user_profile = user.profile.image.url
+
     User1 = human.objects.get(name=name)
     usercommall = Review.objects.filter(post=User1)
     if usercommall.count()>0:
         return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall ,'user_profile':user_profile})
     else:
         Nocomment="โนคอมเม้นเน้นคอมโบ"
         return render(request, 'recieve_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                        'Nocomment': Nocomment})
+                                                        'Nocomment': Nocomment ,'user_profile':user_profile})
 
 def view_other_profile(request,name):
     Selecteduser=User.objects.get_by_natural_key(name)
     username=Selecteduser.username
     User1= human.objects.get(name=name)
+
+    #Profile
+    user = User.objects.filter(username=username).first()
+    user_profile = user.profile.image.url
 
     if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
 
@@ -218,23 +232,23 @@ def view_other_profile(request,name):
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'checked' : checked,'id':User2 })
+                                                            'usercomall': usercommall,'checked' : checked,'id':User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'Nocomment': Nocomment,'checked' : checked ,'id':User2})
+                                                            'Nocomment': Nocomment,'checked' : checked ,'id':User2 ,'user_profile':user_profile})
     else:
         usercommall =Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'id':User2})
+                                                            'usercomall': usercommall,'id':User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'Nocomment': Nocomment,'id':User2})
+                                                            'Nocomment': Nocomment,'id':User2 ,'user_profile':user_profile})
 
 def unfriendmatched(request,name):
     myself = get_object_or_404(human, name=request.user.username)
@@ -341,6 +355,11 @@ def matching(request,name):
 
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
+
+    # Profile
+    user = User.objects.filter(username=username).first()
+    user_profile = user.profile.image.url
+
     if not Wantmatch.objects.filter(name=request.user.username ).exists():
         firstwm = Wantmatch(name=request.user.username)
         firstwm.save()
@@ -364,28 +383,33 @@ def matching(request,name):
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'checked' : checked,'id':User2 })
+                                                            'usercomall': usercommall,'checked' : checked,'id':User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'Nocomment': Nocomment,'checked' : checked ,'id':User2})
+                                                            'Nocomment': Nocomment,'checked' : checked ,'id':User2 ,'user_profile':user_profile})
     else:
         usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'id':User2})
+                                                            'usercomall': usercommall,'id':User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'Nocomment': Nocomment,'id':User2})
+                                                            'Nocomment': Nocomment,'id':User2 ,'user_profile':user_profile})
 
 
 def unmatching(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
+
+    # Profile
+    user = User.objects.filter(username=username).first()
+    user_profile = user.profile.image.url
+
     User1 = human.objects.get(name=name)
     # User1= human.objects.get(pk=1).delete()
     User2 = get_object_or_404(human, name=name)
@@ -412,23 +436,23 @@ def unmatching(request,name):
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                          'usercomall': usercommall, 'checked': checked, 'id': User2})
+                                                          'usercomall': usercommall, 'checked': checked, 'id': User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                          'Nocomment': Nocomment, 'checked': checked, 'id': User2})
+                                                          'Nocomment': Nocomment, 'checked': checked, 'id': User2 ,'user_profile':user_profile})
     else:
         usercommall = Review.objects.filter(post=User1)
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                          'usercomall': usercommall, 'id': User2})
+                                                          'usercomall': usercommall, 'id': User2 ,'user_profile':user_profile})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                          'Nocomment': Nocomment, 'id': User2})
+                                                          'Nocomment': Nocomment, 'id': User2 ,'user_profile':user_profile})
 def add_subject(request):
     if not Subject.objects.filter(name=request.POST.get('item_subject', '')).exists():
         firstsubject = Subject(name=request.POST.get('item_subject', ''))

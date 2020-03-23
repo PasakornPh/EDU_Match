@@ -5,14 +5,21 @@
 {% block content %} 
     <h2> {{ username }}'s profile</h2>
     <form method="post">
-        {% csrf_token %}
-        <p>Username   : {{ username }} <span class="badge badge-pill badge-warning">Matched</span> </p>
-        <p>First name : {{ firstname }} </p>
-        <p>Last  name : {{ lastname }} </p>
-        <p>Email address     : {{ email }} </p>
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'unmatched' username   %}'"> Unmatched ! </button>
+        <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src='{{user_profile}}' width="250" height="250"  hspace="20">
+            <div class="media-body">
+            {% csrf_token %}
+            <p>Username   : {{ username }} <span class="badge badge-pill badge-warning">Matched</span> </p>
+            <p>First name : {{ firstname }} </p>
+            <p>Last  name : {{ lastname }} </p>
+            <p>Email address     : {{ email }} </p>
+            <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'unmatched' username   %}'"> Unmatched ! </button>
 
-        <br><br>
-        <a href="{% url 'friendmatched' %}">Back</a>
+            <br><br>
+            <a href="{% url 'friendmatched' %}">Back</a>
+            </div>
+        </div>
+    </div>
     </form>
 {% endblock content %}

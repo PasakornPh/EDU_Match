@@ -5,14 +5,21 @@
 {% block content %} 
     <h2>{{ username }}'s profile</h2>
     <form method="post">
-        {% csrf_token %}
-        <p>Username   : {{ username }} </p>
-        <p>First name : {{ firstname }} </p>
-        <p>Last  name : {{ lastname }} </p>
-        <p>Email address     : {{ email }} </p>
-        {{ count }}
-        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'acceptM' username   %}'"> Accept </button> <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'declineM' username   %}'"> Decline </button>
-        <br><br>
-        <a href="{% url 'request_match' %}">Back</a>
+        <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src='{{user_profile}}' width="250" height="250"  hspace="20">
+            <div class="media-body">
+            {% csrf_token %}
+            <p>Username   : {{ username }} </p>
+            <p>First name : {{ firstname }} </p>
+            <p>Last  name : {{ lastname }} </p>
+            <p>Email address     : {{ email }} </p>
+            {{ count }}
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'acceptM' username   %}'"> Accept </button> <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='{% url 'declineM' username   %}'"> Decline </button>
+            <br><br>
+            <a href="{% url 'request_match' %}">Back</a>
+            </div>
+        </div>
+    </div>
     </form>
 {% endblock content %}

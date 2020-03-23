@@ -7,21 +7,29 @@
 
     <h2>{{ username }}'s profile</h2>
     <form method="post">
-        {% csrf_token %}
-        <p>Username   : {{ username }}</p>
-        <p>First name : {{ firstname }} </p>
-        <p>Last  name : {{ lastname }} </p>
-        <p>Email address     : {{ email }} </p>
-        {{ count }}
-        {% if checked %}
-        <button type="button" class="btn btn-outline-danger btn-sm " onclick="location.href='{% url 'unmatching' username   %}'"> unmatching </button>
-        <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'room' id   %}'"> chat </button>
-        {% else %}
-        <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'matching' username   %}'"> matching </button>
-        <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'room' id   %}'"> chat </button>
-        {% endif %}
-        <br><br>
-        <a href="{% url 'home' %}">Back</a>
+        <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src='{{user_profile}}' width="250" height="250"  hspace="20">
+        <div class="media-body">
+            {% csrf_token %}
+            <p>Username   : {{ username }}</p>
+            <p>First name : {{ firstname }} </p>
+            <p>Last  name : {{ lastname }} </p>
+            <p>Email address     : {{ email }} </p>
+            {{ count }}
+            {% if checked %}
+            <button type="button" class="btn btn-outline-danger btn-sm " onclick="location.href='{% url 'unmatching' username   %}'"> unmatching </button>
+            <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'room' id   %}'"> chat </button>
+            {% else %}
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='{% url 'matching' username   %}'"> matching </button>
+            <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'room' id   %}'"> chat </button>
+            {% endif %}
+            <br><br>
+            <a href="{% url 'home' %}">Back</a>
+        </div>
+        </div>
+    </div>
+
     </form>
 <br><br>
 
