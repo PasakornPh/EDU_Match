@@ -38,6 +38,49 @@
       <div class="comments" style="padding: 10px;">
           <div class="card-body">
 <h3 class="font-weight-bold">Review</h3>
+              <div class="comments" style="padding: 5px;">
+              <p class="font-weight-bold"> total review score </p>
+                  {% if meanstar == 0 %}
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 1 %}
+
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 2 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 3 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 4 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if rmeanstar == 5 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>{% endif %}
+                  <p > User rating:{% if usercomall %} {{ usercomall.count }}{% else %} 0 {% endif %}  </p>
+
+              </div>
+
 <br>
 <div class="comments" style="padding: 10px;">
             <h4 class="font-weight-bold"> Leave a review </h4><br>
@@ -72,6 +115,11 @@
     </div>
 </div>
 
+
+<div class="container">
+  <div class="row">
+      <div class="comments" style="padding: 5px;">
+          <div class="card-body">
 {% if usercomall %}
 {% for review in usercomall %}
 {% csrf_token %}
@@ -128,11 +176,15 @@
 </td></tr>
 {% endfor %}
 {% endif %}
+
 {% if Nocomment %}
-{{ Nocomment }}
+No one comment here.
 {% endif %}
 
-
+          </div>
+      </div>
+  </div>
+</div>
 
 
 <br>

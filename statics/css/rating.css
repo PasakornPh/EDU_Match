@@ -8,7 +8,7 @@ body
 .rating
 {
     position: absolute;
-    top: 86%;
+    top: 90%;
     Left: 24%;
     transform: translate(-50%,-50%) rotateY(180deg) ;
     display: flex;
