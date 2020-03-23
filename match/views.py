@@ -100,56 +100,6 @@ def ProfileView(request):
     else:
         return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
             , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})'''
-def write_review(request,profilename):
-    Selecteduser = User.objects.get_by_natural_key(profilename)
-    username = Selecteduser.username
-    User1 = human.objects.get(name=profilename)
-    User2 = ''
-    for i in User1.chatroomname.all():
-        if (request.user.username in i.name) and (profilename in i.name):
-            User2 = i.name
-
-
-    usercommall = Review.objects.filter(post=User1)
-    if User1.wantmatch.filter(name=request.user.username):
-        checked=1
-        if request.POST.get('item_review', ''):
-            getrating = request.POST.getlist('star', '')
-            if getrating:
-                starrating = getrating[0]
-            else:
-                starrating = 0
-            Review.objects.create(post=User1,realname=request.user.username, star=starrating,message=request.POST.get('item_review', ''))
-
-            usercommall=Review.objects.filter(post=User1)
-            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
-        else:
-            nomessage='Please type your message before Review'
-            usercommall = Review.objects.filter(post=User1)
-            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email,'nomessage':nomessage, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2})
-
-    else:
-        if request.POST.get('item_review', ''):
-            getrating = request.POST.getlist('star', '')
-            if getrating:
-                starrating = getrating[0]
-            else:
-                starrating = 0
-            Review.objects.create(post=User1, realname=request.user.username, star=starrating,
-                                  message=request.POST.get('item_review', ''))
-
-            usercommall = Review.objects.filter(post=User1)
-            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                          'usercomall': usercommall, 'id': User2})
-        else:
-            nomessage = 'Please type your message before Review'
-            usercommall = Review.objects.filter(post=User1)
-            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'nomessage': nomessage,
-                                                          'name': username, 'usercomall': usercommall, 'id': User2})
 
 
 def delete_review(request,profilename):
@@ -180,12 +130,66 @@ def friendprofile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
     username = Selecteduser.username
 
+    User1 = human.objects.get(name=name)
+    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
+
+        chatname=Chatroomname.objects.create(name=Selecteduser.username+request.user.username)
+        chatname.save()
+    chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
+    human.objects.get(name=name).chatroomname.add(chatnamer)
+    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+    User2=''
+    for i in User1.chatroomname.all():
+        if (request.user.username in i.name ) and (name in i.name):
+            User2=i.name
+    #rating
+    meanstar = 0
+    usercommall = Review.objects.filter(post=User1)
+    if usercommall.count() > 0:
+        for i in usercommall:
+            meanstar += i.star
+        meanstar = meanstar // usercommall.count()
+
     # Profile
     user = User.objects.filter(username=username).first()
     user_profile = user.profile.image.url
 
     return render(request, 'Friend_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username ,'user_profile':user_profile})
+        , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username ,'usercomall': usercommall,'user_profile':user_profile,'id':User2,'meanstar':meanstar})
+
+
+def write_review_matched(request,profilename):
+    user = User.objects.filter(username=profilename).first()
+    user_profile = user.profile.image.url
+    Selecteduser = User.objects.get_by_natural_key(profilename)
+    username = Selecteduser.username
+    User1 = human.objects.get(name=profilename)
+    User2 = ''
+    for i in User1.chatroomname.all():
+        if (request.user.username in i.name) and (profilename in i.name):
+            User2 = i.name
+    meanstar = 0
+    usercommall = Review.objects.filter(post=User1)
+    if usercommall.count() > 0:
+        for i in usercommall:
+            meanstar += i.star
+        meanstar = meanstar // usercommall.count()
+    if request.POST.get('item_review', ''):
+        getrating = request.POST.getlist('star', '')
+        if getrating:
+            starrating = getrating[0]
+        else:
+            starrating = 0
+        Review.objects.create(post=User1,realname=request.user.username, star=starrating,message=request.POST.get('item_review', ''))
+
+        usercommall=Review.objects.filter(post=User1)
+        return render(request, 'Friend_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'id':User2,'meanstar':meanstar,'user_profile':user_profile})
+    else:
+        nomessage='Please type your message before Review'
+        usercommall = Review.objects.filter(post=User1)
+        return render(request, 'Friend_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email,'nomessage':nomessage, 'name': username,'usercomall':usercommall,'id':User2,'meanstar':meanstar,'user_profile':user_profile})
 
 def view_r_profile(request,name):
     Selecteduser = User.objects.get_by_natural_key(name)
@@ -268,8 +272,8 @@ def view_other_profile(request,name):
     else:
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
-                                                            'usercomall': usercommall,'id':User2 ,'user_profile':user_profile,'meanstar':meanstar})
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username
+                                                            ,'usercomall': usercommall,'id':User2 ,'user_profile':user_profile,'meanstar':meanstar})
         else:
             Nocomment = "โนคอมเม้นเน้นคอมโบ"
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
@@ -395,6 +399,63 @@ def unmatching(request, name):
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                           'Nocomment': Nocomment, 'id': User2,
                                                           'user_profile': user_profile, 'meanstar': meanstar})
+
+def write_review(request,profilename):
+    user = User.objects.filter(username=profilename).first()
+    user_profile = user.profile.image.url
+    Selecteduser = User.objects.get_by_natural_key(profilename)
+    username = Selecteduser.username
+    User1 = human.objects.get(name=profilename)
+    User2 = ''
+    for i in User1.chatroomname.all():
+        if (request.user.username in i.name) and (profilename in i.name):
+            User2 = i.name
+    meanstar = 0
+    usercommall = Review.objects.filter(post=User1)
+    if usercommall.count() > 0:
+        for i in usercommall:
+            meanstar += i.star
+        meanstar = meanstar // usercommall.count()
+
+    if User1.wantmatch.filter(name=request.user.username):
+        checked=1
+        if request.POST.get('item_review', ''):
+            getrating = request.POST.getlist('star', '')
+            if getrating:
+                starrating = getrating[0]
+            else:
+                starrating = 0
+            Review.objects.create(post=User1,realname=request.user.username, star=starrating,message=request.POST.get('item_review', ''))
+
+            usercommall=Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2,'meanstar':meanstar,'user_profile':user_profile})
+        else:
+            nomessage='Please type your message before Review'
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email,'nomessage':nomessage, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2,'meanstar':meanstar,'user_profile':user_profile})
+
+    else:
+        if request.POST.get('item_review', ''):
+            getrating = request.POST.getlist('star', '')
+            if getrating:
+                starrating = getrating[0]
+            else:
+                starrating = 0
+            Review.objects.create(post=User1, realname=request.user.username, star=starrating,
+                                  message=request.POST.get('item_review', ''))
+
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
+                                                          'usercomall': usercommall, 'id': User2,'meanstar':meanstar,'user_profile':user_profile})
+        else:
+            nomessage = 'Please type your message before Review'
+            usercommall = Review.objects.filter(post=User1)
+            return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
+                , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'nomessage': nomessage,
+                                                          'name': username, 'usercomall': usercommall, 'id': User2,'meanstar':meanstar,'user_profile':user_profile})
 
 ##### end other_profile.html
 

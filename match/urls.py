@@ -27,7 +27,7 @@ urlpatterns = [
     path('profile_add_subject/', views.profile_add_subject,name='profile_add_subject'),
     path('add_subject/', views.add_subject, name='add_subject'),
     path('write_review/<str:profilename>', views.write_review, name='write_review'),
-    path('delete_review/<str:profilename>', views.delete_review, name='delete_review'),
+    path('write_review_matched/<str:profilename>', views.write_review_matched, name='write_review_matched'),
     path('clean_model/', views.clean_model, name='clean'),
     path('search/', views.searching, name='search'),
     path('accounts/change_password/',
