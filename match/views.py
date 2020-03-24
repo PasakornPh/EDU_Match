@@ -72,9 +72,11 @@ def ProfileView(request):
     #success_url = reverse_lazy('home')
     #template_name = 'registration/profile.html'
 
-def delete_review(request,profilename):
-    pass
-    return render(request, 'other_profile.html')
+def about_app(request):
+    return render(request, 'aboutus/about_app.html')
+
+def about_group(request):
+    return render(request, 'aboutus/about_group.html')
 
 def request_match(request):
     Nosent="No one sent you a matching"

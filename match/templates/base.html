@@ -47,6 +47,12 @@ font-size: 20px;
             <li class="nav-item">
             <a class="nav-link" href="/accounts/change_password">Change Password</a>
             </li>
+              <li class="nav-item">
+            <a class="nav-link" href="{% url 'about_app' %}">About app</a>
+            </li>
+              <li class="nav-item">
+            <a class="nav-link" href="{% url 'about_group' %}">About group</a>
+            </li>
             </ul>
             <a class="nav-link disabled" href="#">You are Logged in as {{ user.first_name }}</a>
             <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'logout' %}">Log Out</a>

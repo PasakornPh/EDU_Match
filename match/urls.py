@@ -30,6 +30,8 @@ urlpatterns = [
     path('write_review_matched/<str:profilename>', views.write_review_matched, name='write_review_matched'),
     path('clean_model/', views.clean_model, name='clean'),
     path('search/', views.searching, name='search'),
+    path('about_app', views.about_app, name='about_app'),
+    path('about_group', views.about_group, name='about_group'),
     path('accounts/change_password/',
         auth_views.PasswordChangeView.as_view(
             template_name='registration/change_password.html',
