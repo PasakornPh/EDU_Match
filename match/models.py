@@ -49,7 +49,7 @@ class Student(models.Model):
 
 class chatlog(models.Model):
     chatroom=models.CharField(max_length=300)
-    chatlo=models.TextField(blank=True)
+    chatlo=models.CharField(max_length=30000)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
