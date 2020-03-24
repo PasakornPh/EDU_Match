@@ -171,18 +171,19 @@ def view_r_profile(request,name):
     user = User.objects.filter(username=username).first()
     user_profile = user.profile.image.url
 
-    User1 = human.objects.get(name=name)
-    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
-
-        chatname=Chatroomname.objects.create(name=Selecteduser.username+request.user.username)
+    if not Chatroomname.objects.filter(
+            name=Selecteduser.username + request.user.username).exists() and not Chatroomname.objects.filter(
+            name=request.user.username + Selecteduser.username).exists():
+        chatname = Chatroomname.objects.create(name=Selecteduser.username + request.user.username)
         chatname.save()
-    chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
-    human.objects.get(name=name).chatroomname.add(chatnamer)
-    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
-    User2=''
+        chatnamer = Chatroomname.objects.get(name=Selecteduser.username + request.user.username)
+        human.objects.get(name=name).chatroomname.add(chatnamer)
+        human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+    User1 = human.objects.get(name=name)
+    User2 = ''
     for i in User1.chatroomname.all():
-        if (request.user.username in i.name ) and (name in i.name):
-            User2=i.name
+        if (request.user.username in i.name) and (name in i.name):
+            User2 = i.name
 
     #rating
     meanstar = 0
@@ -205,19 +206,19 @@ def view_r_profile(request,name):
 def view_other_profile(request,name):
     Selecteduser=User.objects.get_by_natural_key(name)
     username=Selecteduser.username
-    User1= human.objects.get(name=name)
 
     #Profile
     user = User.objects.filter(username=username).first()
     user_profile = user.profile.image.url
 
-    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
+    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists() and not Chatroomname.objects.filter(name=request.user.username+Selecteduser.username).exists():
 
         chatname=Chatroomname.objects.create(name=Selecteduser.username+request.user.username)
         chatname.save()
-    chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
-    human.objects.get(name=name).chatroomname.add(chatnamer)
-    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+        chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
+        human.objects.get(name=name).chatroomname.add(chatnamer)
+        human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+    User1 = human.objects.get(name=name)
     User2=''
     for i in User1.chatroomname.all():
         if (request.user.username in i.name ) and (name in i.name):
@@ -266,12 +267,6 @@ def matching(request, name):
         firstwm.save()
     fwantmatch = Wantmatch.objects.get(name=request.user.username)
     human.objects.get(name=name).wantmatch.add(fwantmatch)
-    if not Chatroomname.objects.filter(name=Selecteduser.username + request.user.username).exists():
-        chatname = Chatroomname.objects.create(name=Selecteduser.username + request.user.username)
-        chatname.save()
-    chatnamer = Chatroomname.objects.get(name=Selecteduser.username + request.user.username)
-    human.objects.get(name=name).chatroomname.add(chatnamer)
-    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
     User2 = ''
     User1 = human.objects.get(name=name)
     for i in User1.chatroomname.all():
@@ -327,12 +322,7 @@ def unmatching(request, name):
     User2 = get_object_or_404(human, name=name)
     selected_unmatch = User2.wantmatch.get(name=request.user.username)
     selected_unmatch.delete()
-    if not Chatroomname.objects.filter(name=Selecteduser.username + request.user.username).exists():
-        chatname = Chatroomname.objects.create(name=Selecteduser.username + request.user.username)
-        chatname.save()
-    chatnamer = Chatroomname.objects.get(name=Selecteduser.username + request.user.username)
-    human.objects.get(name=name).chatroomname.add(chatnamer)
-    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+
     User2 = ''
     for i in User1.chatroomname.all():
         if (request.user.username in i.name) and (name in i.name):
