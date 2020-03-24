@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_edu/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_edu/routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/routing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_edu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/match_edu/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,11 +271,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add picture in about app and about group page" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="693" y="275" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584005875725">
+    <state x="693" y="275" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585061907817">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1325.741@0.27.1325.741" timestamp="1581873852939" />
-    <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1584005875725" />
+    <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1585061907817" />
     <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1585053809725">
       <screen x="0" y="27" width="1366" height="702" />
     </state>

@@ -7,6 +7,4 @@ application = ProtocolTypeRouter({
     'websocket': URLRouter(
         chat.routing.websocket_urlpatterns
         ),
-
 })
-
