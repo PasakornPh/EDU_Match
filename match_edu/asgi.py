@@ -14,5 +14,4 @@ from channels.routing import get_default_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'match_edu.settings')
 django.setup()
-channel_layer = get_channel_layer()
 application = get_default_application()
