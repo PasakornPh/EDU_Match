@@ -10,7 +10,7 @@
        <table>
                <p>My expert subject :</p>
            <form action="{% url 'add_subject' %}" method="post">
-            <input name="item_subject" id="id_new_subject" placeholder="Enter a favorite Subject" />
+            <input name="item_subject" id="id_new_subject" placeholder="Enter a expert Subject" />
             </ul><button type="submit" value="Submit"> Add </button>
             {% csrf_token %}
         </form>
@@ -19,12 +19,18 @@
         {% if User %}
         <table id="id_list_table">
             <form action="{% url 'clean' %}" method="post">
+                {% if fillyourbox %}
+                {{ fillyourbox }}
+                {% endif %}
+                <br>
             {% for new_subject in User.subject.all %}
 
 
                 <tr><td><input type="checkbox" name="new_subject" id="new_subject{{ forloop.counter }}" value="{{ new_subject.id }}"><label for="new_subject{{ forloop.counter }}">{{ forloop.counter }}: {{ new_subject }}</label><br></td></tr>
             {% endfor %}
+                {% if checkremovebutton %}
                 <button id="id_delete_subject"type="submit">Remove</button>
+                {% endif %}
                 {{ error_message }}
 
                 {% csrf_token %}

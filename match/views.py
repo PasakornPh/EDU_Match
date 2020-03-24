@@ -26,9 +26,8 @@ def home(request):
         return render(request, 'home.html', {
             'new_subject': request.POST.get('item_subject', ''), 'wantmatchcount': wantmatchcount
         })
-    return render(request, 'home.html', {
-                'new_subject': request.POST.get('item_subject', ''),'count' : count
-            })
+    else:
+        return redirect('login')
 
 # Sign Up View
 #class SignUpView(CreateView):
@@ -72,35 +71,6 @@ def ProfileView(request):
     #p_form = ProfileUpdateForm
     #success_url = reverse_lazy('home')
     #template_name = 'registration/profile.html'
-'''def write_review(request,profilename):
-    Selecteduser = User.objects.get_by_natural_key(profilename)
-    username = Selecteduser.username
-    User1 = human.objects.get(name=profilename)
-    if request.POST.get('item_review', ''):
-        if not Review.objects.filter(name=request.user.username+profilename).exists():
-            firstreview=Review.objects.create(name=request.user.username+profilename)#commentname+profilename
-            firstreview.save()
-            User1.review.add(firstreview)
-        getreview=Review.objects.get(name=request.user.username+profilename)
-        getreview.realname=request.user.username
-        getreview.message=request.POST.get('item_review', '')
-        getrating = request.POST.getlist('star', '')
-        if getrating:
-            getreview.star = getrating[0]
-        else:
-            getreview.star = 0
-        getreview.save()
-        usercommall=User1.review.all()
-        alluser= User.objects.all()
-        print(getrating)
-        for i in alluser:
-            alluser.exclude
-        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall})
-    else:
-        return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
-            , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username})'''
-
 
 def delete_review(request,profilename):
     pass
@@ -556,34 +526,56 @@ def searching(request):
 
 def profile_add_subject(request):
     User1 = human.objects.get(name=request.user.username)
+    checkremovebutton = 0
+    if User1.subject.all().count() > 0:
+        checkremovebutton = 1
     return render(request, 'add_subject.html', {
-        'User': User1,
+        'User': User1,'checkremovebutton':checkremovebutton
     })
 
 def add_subject(request):
-    if not Subject.objects.filter(name=request.POST.get('item_subject', '')).exists():
-        firstsubject = Subject(name=request.POST.get('item_subject', ''))
-        firstsubject.save()
-    if not human.objects.filter(name=request.user.username).exists():
-        User1 = human(name=request.user.username)
-        User1.save()
-    fsubject = Subject.objects.get(name=request.POST.get('item_subject', ''))
-    human.objects.get(name=request.user.username).subject.add(fsubject)
-    User1 = human.objects.get(name=request.user.username)
-    return render(request, 'add_subject.html', {
-        'User': User1,
-    })
+    subject=request.POST.get('item_subject', '')
+    subject=subject.lower().strip().replace(" ", "")
+    if subject!= '':
+        if not Subject.objects.filter(name=subject).exists():
+            firstsubject = Subject(name=subject)
+            firstsubject.save()
+        if not human.objects.filter(name=request.user.username).exists():
+            User1 = human(name=request.user.username)
+            User1.save()
+        fsubject = Subject.objects.get(name=subject)
+        human.objects.get(name=request.user.username).subject.add(fsubject)
+        User1 = human.objects.get(name=request.user.username)
+        checkremovebutton=0
+        if User1.subject.all().count() >0:
+            checkremovebutton=1
+        return render(request, 'add_subject.html', {
+            'User': User1,'checkremovebutton':checkremovebutton
+        })
+    else:
+        fillyourbox="Type your expert subject"
+        User1 = human.objects.get(name=request.user.username)
+        checkremovebutton = 0
+        if User1.subject.all().count() > 0:
+            checkremovebutton = 1
+        return render(request, 'add_subject.html', {
+            'User': User1, 'checkremovebutton': checkremovebutton,'fillyourbox':fillyourbox
+        })
 
 def clean_model(request):
     User1 = human.objects.get(name=request.user.username)
     #User1= human.objects.get(pk=1).delete()
     new_subject_list = request.POST.getlist('new_subject')
+    checkremovebutton = 0
+
     if len(new_subject_list) == 0:
         # Redisplay the question voting form.
-
+        if User1.subject.all().count() > 0:
+            checkremovebutton = 1
         return render(request, 'add_subject.html', {
             'User': User1,
             'error_message': "You didn't select a subject.",
+            'checkremovebutton':checkremovebutton
         })
     else:
         User2 = get_object_or_404(human, name=request.user.username)
@@ -592,12 +584,13 @@ def clean_model(request):
             selected_subject = User2.subject.get(pk=index)
 
             selected_subject.delete()
-
+        if User1.subject.all().count() > 0:
+            checkremovebutton = 1
             # Always return an HttpResponseRedirect after successfully dealing
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
 
-        return render(request, 'add_subject.html', {'User':User1})
+        return render(request, 'add_subject.html', {'User':User1,'checkremovebutton':checkremovebutton})
 
 def change_password_done(request):
     return render(request, 'registration/change_password_done.html')
