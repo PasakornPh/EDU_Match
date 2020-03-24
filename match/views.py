@@ -24,7 +24,7 @@ def home(request):
         currentu=human.objects.get(name=request.user.username)
         wantmatchcount=currentu.wantmatch.all().count
         return render(request, 'home.html', {
-            'new_subject': request.POST.get('item_subject', ''), 'wantmatchcount': wantmatchcount
+            'new_subject': request.POST.get('item_subject', ''), 'wantmatchcount': wantmatchcount, "count":count
         })
     else:
         return redirect('login')

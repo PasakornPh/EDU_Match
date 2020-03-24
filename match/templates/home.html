@@ -4,6 +4,18 @@
 
 {% block content %}
 
+
+<center>
+    <br><br>
+    <style>
+        body {
+          background-image: url("{% url 'home' %}media/pic/left.png"),url("{% url 'home' %}media/pic/right.png");
+          background-repeat: no-repeat,no-repeat;
+          background-attachment: fixed,fixed;
+          background-position: left,right;
+          background-size: 350px 630px,350px 800px;
+        }
+    </style>
     <h2>Welcome to EDU-Match, {% if user.is_authenticated %}Hello {{ user.first_name }}{% else %}Visitor{% endif %} !</h2>
     <p>
         <strong>Total users registered </strong> {{ count }}
@@ -14,7 +26,7 @@
     <form action="{% url 'search' %}" method="post">
     <input name="item_subject2" id="id_new_subject" placeholder="Enter a Subject" />
     {% csrf_token %}
-        <input type="submit" value="Search">
+        <input class="btn btn-success" type="submit" value="Search">
     </form>
 <br>
 {% if subjectin %}
@@ -27,7 +39,7 @@
     {% if usertutorstu%}
 <table id="id_list_matching2">
             {% for tutor in usertutorstu %}
-            <tr><td> -  {{ tutor }}          <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button> <br></td></tr>
+            <tr><td>  {{ tutor }}          <button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button> <br></td></tr>
             {% endfor %}
 
 
@@ -37,9 +49,11 @@
         <table id="id_list_matching">
 
             {% for human in userins %}
-            <tr><td> -  {{ human }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'view_profile' human   %}'"> Profile </button> <br></td></tr>
+            <tr><td>  {{ human }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'view_profile' human   %}'"> Profile </button> <br></td></tr>
             {% endfor %}
         </table>
     {% endif %}
+</center>
+
 {% endblock %}
 

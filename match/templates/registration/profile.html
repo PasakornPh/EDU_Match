@@ -4,6 +4,19 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
+<style>
+
+body {
+  background-image: url("{% url 'home' %}media/pic/profile_right.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: 350px 800px;
+}
+
+
+</style>
+    <br>
     <div class="content-section">
         <div class="media">
             {% if user.profile.image.url == "" %}
