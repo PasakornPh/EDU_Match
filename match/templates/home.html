@@ -17,9 +17,13 @@
         <input type="submit" value="Search">
     </form>
 <br>
+{% if subjectin %}
+    <h3 class="font-weight-bold"> Searching for '{{ subjectin }}' </h3>{% endif %}
+<br>
     {% if Noresult %}
        {{ Noresult }}
     {% endif %}
+
     {% if usertutorstu%}
 <table id="id_list_matching2">
             {% for tutor in usertutorstu %}
@@ -28,6 +32,7 @@
 
 
     {% endif %}
+
     {% if userins %}
         <table id="id_list_matching">
 

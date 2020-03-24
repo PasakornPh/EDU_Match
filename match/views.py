@@ -502,16 +502,18 @@ def declinematch(request,name):
 def searching(request):
     count = User.objects.count()
     User1 = human.objects.get(name=request.user.username)
-    if not Subject.objects.filter(name=request.POST.get('item_subject2', '')).exclude(name=(subject.name for subject in User1.subject.all())).exists():
+    subjectin=request.POST.get('item_subject2', '')
+    subject1=subjectin.lower().strip().replace(" ", "")
+    if not Subject.objects.filter(name=subject1).exclude(name=(subject.name for subject in User1.subject.all())).exists():
         Noresult = 'No users were found matching'
-        return render(request, 'home.html', {'Noresult': Noresult,'count' : count})
-    subinmyself = Subject.objects.filter(name=request.POST.get('item_subject2', ''))
+        return render(request, 'home.html', {'Noresult': Noresult,'count' : count,'subjectin':subjectin})
+    subinmyself = Subject.objects.filter(name=subject1)
     for subject in User1.subject.all():
         subinmyself=subinmyself.exclude(name=subject.name)
     if not subinmyself.exists():
         Noresult = 'No users were found matching'
-        return render(request, 'home.html', {'Noresult': Noresult, 'count': count})
-    firstsubject = Subject.objects.get(name=request.POST.get('item_subject2', ''))
+        return render(request, 'home.html', {'Noresult': Noresult, 'count': count,'subjectin':subjectin})
+    firstsubject = Subject.objects.get(name=subject1)
     first= firstsubject.human_set.all().exclude(name=request.user.username)
     second= firstsubject.human_set.all().exclude(name=request.user.username)
     for tutor in User1.tutor.all():
@@ -521,7 +523,7 @@ def searching(request):
     for human_set in first:
         second=second.exclude(name=human_set.name)
     #    fisubject.add(Subject)
-    return render(request, 'home.html', {'usertutorstu': second,'userins': first,'count': count})
+    return render(request, 'home.html', {'usertutorstu': second,'userins': first,'count': count,'subjectin':subjectin})
 
 
 def profile_add_subject(request):
