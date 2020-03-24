@@ -1,0 +1,1 @@
+from match_edu.celery import app as celery_app
