@@ -159,7 +159,15 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pythonium.group@gmail.com'
+EMAIL_HOST_PASSWORD = 'jpoafaknfkshoqgr'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Pythonium Group'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
