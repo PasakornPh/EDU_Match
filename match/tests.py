@@ -94,6 +94,35 @@ class ProfilePageTests(TestCase):
 
         self.assertEqual('Pasakorn', users.first_name)
 
+class ChangePasswordPageTest(TestCase):
+    def test_change_password_page_url(self):
+        self.user1 = User.objects.create_user(username='testuser',
+                                              first_name='firstname',
+                                              password='Password12345',
+                                              email='test@example.com')
+        self.user1.save()
+        self.client.login(username='testuser', password='Password12345')
+
+        response = self.client.get("/accounts/change_password/")
+        self.assertTemplateUsed(response, template_name='registration/change_password.html')
+
+    def test_change_password_page_form(self):
+        self.user1 = User.objects.create_user(username='testuser',
+                                              first_name='firstname',
+                                              password='Password12345',
+                                              email='test@example.com')
+        self.user1.save()
+        self.client.login(username='testuser', password='Password12345')
+
+        users = User.objects.get(username='testuser')
+        hash_password1 = users.password
+
+        users.set_password('Password67890')
+        users.save()
+
+        hash_password2 = users.password
+        self.assertNotEquals(hash_password1,hash_password2)
+
 class Addsubject(TestCase):
     def test_add_subject(self):
         User.objects.create_user(username='kitsanapong', password='kpassword')
