@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from match.models import chatlog
 from django.contrib.auth.models import User
+from django import db
+from django.db import close_old_connections
 def index(request):
     return render(request, 'chat/index.html', {})
 
@@ -16,7 +18,8 @@ def room(request, room_name):
             sum+='\t\t\t\t\t\t\t\t\t'+i+'\n'
         else:
             sum+=i+'\n'
-
+    close_old_connections()
+    db.connection.close()
     return render(request, 'chat/room.html', {
         'room_name': room_name,'old_message':sum
     })
