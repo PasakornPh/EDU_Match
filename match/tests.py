@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.urls import reverse
-
+from django.urls import reverse, resolve
+from match.views import *
 from match.models import human, Subject, Wantmatch, Review, Matched, Chatroomname, Tutor, Student
 
 
@@ -34,59 +34,30 @@ class HumanModelTest(TestCase):
         self.assertEqual(first_saved_user.subject.first().name, 'first_subject')
         self.assertEqual(second_saved_user.subject.first().name, 'second_subject')
 
-class SignUpTest(TestCase):
-    def test_user_signup(self):
-        self.user1 =  User.objects.create_user(username='testuser', password='Password12345', email='test@example.com')
-        self.user1.save()
+class SignUpPageTests(TestCase):
 
+    def test_signup_page_url(self):
+        response = self.client.get("/signup/")
+        self.assertTemplateUsed(response, template_name='registration/signup.html')
+
+    def test_signup_url_resolve_to_sign_up_view(self):
+        found = resolve("/signup/")
+        self.assertEqual(found.func, SignUpView)
+
+    def test_sign_up_form(self):
+        response = self.client.post("/signup/",{
+            'username': 'testuser',
+            'first_name': 'firstname',
+            'last_name': 'lastname',
+            'email': 'test@example.com',
+            'password1': 'Pasakorn24130',
+            'password2': 'Pasakorn24130'
+        })
+
+        self.assertEqual(response.status_code, 302)  #302 มีการเปลี่ยนเส้นทาง
         users = User.objects.all()
         self.assertEqual(users.count(), 1)
 
-    def test_two_user_signup(self):
-        self.user1 = User.objects.create_user(username='testuser', password='Password12345', email='test@example.com')
-        self.user1.save()
-
-        self.user2 = User.objects.create_user(username='testuser2', password='Password12345', email='test2@example.com')
-        self.user2.save()
-
-        users = User.objects.all()
-        self.assertEqual(users.count(), 2)
-
-class ChangeFirstNameTest(TestCase):
-    def test_change_first_name(self):
-        self.user1 = User.objects.create_user(username='testuser',
-                                              first_name = 'firstname' ,
-                                              password='Password12345',
-                                              email='test@example.com')
-        self.user1.save()
-
-        users = User.objects.get(username='testuser')
-
-        self.assertEqual(users.first_name,'firstname')
-
-        users.first_name = 'change_firstname'
-        users.save()
-
-        self.assertEqual(users.first_name, 'change_firstname')
-
-
-
-
-class ChangePasswordTest(TestCase):
-    def test_change_password(self):
-        self.user1 = User.objects.create_user(username='testuser',
-                                              password='Password12345',
-                                              email='test@example.com')
-        self.user1.save()
-
-        users = User.objects.get(username='testuser')
-        hash_password1 = users.password
-
-        users.set_password('Password67890')
-        users.save()
-
-        hash_password2 = users.password
-        self.assertNotEquals(hash_password1,hash_password2)
 class Addsubject(TestCase):
     def test_add_subject(self):
         User.objects.create_user(username='kitsanapong', password='kpassword')
