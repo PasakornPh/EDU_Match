@@ -221,3 +221,32 @@ class RequestTest(TestCase):
         allttforp = human.objects.get(name='pasakorn').tutor.filter(name='kitsanapong')
         self.assertEqual(allttforp.count(), 0)
 
+
+
+
+class ReviewtTest(TestCase):
+    def test_review(self):
+        User.objects.create_user(username='kitsanapong', password='kpassword')
+        p=User.objects.create_user(username='pasakorn', password='mpassword')
+        pasakornh = human.objects.create(name='pasakorn')
+        kitsanapongh = human.objects.create(name='kitsanapong')
+
+        # kitsanapong login
+        self.client.login(username="kitsanapong", password="kpassword")
+        chatname = Chatroomname.objects.create(name='kitsanapong' + 'pasakorn')
+        chatname.save()
+        chatnamer = Chatroomname.objects.get(name='kitsanapong' + 'pasakorn')
+        human.objects.get(name='kitsanapong').chatroomname.add(chatnamer)
+        human.objects.get(name='pasakorn').chatroomname.add(chatnamer)
+
+        totalreview=Review.objects.filter(post=pasakornh)
+        self.assertEqual(totalreview.count(), 0)
+        self.client.post(f'/write_review/{pasakornh.name}',{'item_review':'Your teaching is so good.','star':[0,0,0,0,]})
+        totalreview=Review.objects.filter(post=pasakornh).all()
+        self.assertEqual(totalreview.count(), 1)
+        self.assertEqual(totalreview[0].message,'Your teaching is so good.')
+        self.client.post(f'/write_review/{pasakornh.name}',{'item_review': 'You are so cool.', 'star': [0, 0, 0, 0, ]})
+        totalreview = Review.objects.filter(post=pasakornh).all()
+        self.assertEqual(totalreview.count(), 2)
+        self.assertEqual(totalreview[0].message, 'Your teaching is so good.')
+        self.assertEqual(totalreview[1].message, 'You are so cool.')
