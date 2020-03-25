@@ -276,13 +276,13 @@ def matching(request, name):
     # rating
     meanstar = 0
     usercommall = Review.objects.filter(post=User1)
-    if usercommall.count() > 0:
-        for i in usercommall:
-            meanstar += i.star
-        meanstar = meanstar // usercommall.count()
     if User1.wantmatch.filter(name=request.user.username):
         checked = 1
         usercommall = Review.objects.filter(post=User1)
+        if usercommall.count() > 0:
+            for i in usercommall:
+                meanstar += i.star
+            meanstar = meanstar // usercommall.count()
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -296,6 +296,10 @@ def matching(request, name):
                                                           'user_profile': user_profile, 'meanstar': meanstar})
     else:
         usercommall = Review.objects.filter(post=User1)
+        if usercommall.count() > 0:
+            for i in usercommall:
+                meanstar += i.star
+            meanstar = meanstar // usercommall.count()
         if usercommall.count() > 0:
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
@@ -373,12 +377,6 @@ def write_review(request,profilename):
         if (request.user.username in i.name) and (profilename in i.name):
             User2 = i.name
     meanstar = 0
-    usercommall = Review.objects.filter(post=User1)
-    if usercommall.count() > 0:
-        for i in usercommall:
-            meanstar += i.star
-        meanstar = meanstar // usercommall.count()
-
     if User1.wantmatch.filter(name=request.user.username):
         checked=1
         if request.POST.get('item_review', ''):
@@ -390,6 +388,10 @@ def write_review(request,profilename):
             Review.objects.create(post=User1,realname=request.user.username, star=starrating,message=request.POST.get('item_review', ''))
 
             usercommall=Review.objects.filter(post=User1)
+            if usercommall.count() > 0:
+                for i in usercommall:
+                    meanstar += i.star
+                meanstar = int(meanstar // usercommall.count())
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,'usercomall':usercommall,'checked':checked,'id':User2,'meanstar':meanstar,'user_profile':user_profile})
         else:
@@ -409,6 +411,10 @@ def write_review(request,profilename):
                                   message=request.POST.get('item_review', ''))
 
             usercommall = Review.objects.filter(post=User1)
+            if usercommall.count() > 0:
+                for i in usercommall:
+                    meanstar += i.star
+                meanstar = int(meanstar // usercommall.count())
             return render(request, 'other_profile.html', {'username': username, 'firstname': Selecteduser.first_name
                 , 'lastname': Selecteduser.last_name, 'email': Selecteduser.email, 'name': username,
                                                           'usercomall': usercommall, 'id': User2,'meanstar':meanstar,'user_profile':user_profile})
