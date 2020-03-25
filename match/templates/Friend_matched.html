@@ -5,35 +5,52 @@
 {% block content %}
 
 <html>
-<h2>Friend matched</h2>
+
+<style>
+div.text {
+  padding-left: 50px;
+}
+
+body {
+  background-image: url("{% url 'home' %}media/pic/signup_right.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: 500px 800px;
+}
+
+</style>
+<div class="text">
+    <br>
+    <h2>Friend matched</h2><hr>
 
 
-<br>
-{% if alltutor or allstudent%}
-        {% if alltutor %}
-        <table id="id_list_matching">
-            My Tutor
-            {% for tutor in alltutor %}
-            <tr><td>{{ forloop.counter }}: {{ tutor }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button>  <br></td></tr>
+    <br>
+    {% if alltutor or allstudent%}
+            {% if alltutor %}
+            <table id="id_list_matching">
+                My Tutor
+                {% for tutor in alltutor %}
+                <tr><td>{{ forloop.counter }}: {{ tutor }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' tutor   %}'"> Profile </button>  <br></td></tr>
 
-            {% endfor %}
-        </table>
-<br>
-{% endif %}
-{% if allstudent %}
-        <table id="id_list_matching2">
-            My Student
-            {% for student in allstudent %}
-            <tr><td>{{ forloop.counter }}: {{ student }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' student   %}'"> Profile </button>
-            {% endfor %}
-        </table>
-{% endif %}
-{% elif Nomatched %}
-<ul> {{ Nomatched }} </ul>
+                {% endfor %}
+            </table>
+    <br>
+    {% endif %}
+    {% if allstudent %}
+            <table id="id_list_matching2">
+                My Student
+                {% for student in allstudent %}
+                <tr><td>{{ forloop.counter }}: {{ student }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'friendprofile' student   %}'"> Profile </button>
+                {% endfor %}
+            </table>
+    {% endif %}
+    {% elif Nomatched %}
+    <ul> {{ Nomatched }} </ul>
 
-{% endif %}
+    {% endif %}
 
-
+</div>
 </html>
 
 

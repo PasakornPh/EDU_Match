@@ -5,22 +5,40 @@
 {% block content %}
 
 <html>
-<h2>Request to matching</h2>
+
+<style>
+    div.text {
+      padding-left: 50px;
+    }
+
+    body {
+          background-image: url("{% url 'home' %}media/pic/right.png");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: right;
+          background-size: 350px 800px;
+        }
+
+</style>
+
+    <div class="text">
+        <br>
+        <h2>Request to matching</h2><hr>
 
 
-<br>
-{% if allwantmatch %}
-        <table id="id_list_matching">
-            {% for wantmatch in allwantmatch %}
-            <tr><td>{{ forloop.counter }}: {{ wantmatch }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'view_profile_R' wantmatch   %}'"> Profile </button>  <br></td></tr>
-            {% endfor %}
-        </table>
-{% elif Nosent %}
-<ul> {{ Nosent }} </ul>
+    <br>
+    {% if allwantmatch %}
+            <table id="id_list_matching">
+                {% for wantmatch in allwantmatch %}
+                <tr><td>{{ forloop.counter }}: {{ wantmatch }}          <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='{% url 'view_profile_R' wantmatch   %}'"> Profile </button>  <br></td></tr>
+                {% endfor %}
+            </table>
+    {% elif Nosent %}
+    <ul> {{ Nosent }} </ul>
 
-{% endif %}
+    {% endif %}
 
-
+    </div>
 </html>
 
 

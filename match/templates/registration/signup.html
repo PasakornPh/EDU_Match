@@ -3,19 +3,36 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+<style>
+div.text {
+  padding-left: 50px;
+}
+
+body {
+  background-image: url("{% url 'home' %}media/pic/signup_right.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: 500px 800px;
+}
+
+</style>
+<div class="text">
+    <br>
+
     <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Sign Up</legend>
-                {{ form.as_p }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-putline-info" type="submit">Sign Up</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
+        <div class="text">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <h2>Sign Up</h2><hr>
+                    {{ form.as_p }}
+                </fieldset>
+                    <button class="btn btn-success" type="submit">Sign Up</button>
+            </form>
             <small class="text-muted">Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Login</a> </small>
+
         </div>
     </div>
+</div>
 {% endblock %}
