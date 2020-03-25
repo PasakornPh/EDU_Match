@@ -583,7 +583,7 @@ def clean_model(request):
             print(index)
             selected_subject = User2.subject.get(pk=index)
 
-            selected_subject.delete()
+            User2.subject.remove(selected_subject)
         if User1.subject.all().count() > 0:
             checkremovebutton = 1
             # Always return an HttpResponseRedirect after successfully dealing
