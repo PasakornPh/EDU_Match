@@ -142,7 +142,7 @@ class RequestTest(TestCase):
     def test_accept_request(self):
         User.objects.create_user(username='kitsanapong', password='kpassword')
         User.objects.create_user(username='pasakorn', password='mpassword')
-        User.objects.create_user('eric01', 'eric@email.com', 'ericpassword')
+
         pasakornh = human.objects.create(name='pasakorn')
         kitsanapongh = human.objects.create(name='kitsanapong')
 
@@ -167,3 +167,27 @@ class RequestTest(TestCase):
         self.assertEqual(stall.count(), 1)
         self.assertEqual(stall[0].name, 'pasakorn')
 
+    def test_decline_request(self):
+        User.objects.create_user(username='kitsanapong', password='kpassword')
+        User.objects.create_user(username='pasakorn', password='mpassword')
+
+        pasakornh = human.objects.create(name='pasakorn')
+        kitsanapongh = human.objects.create(name='kitsanapong')
+
+        # kitsanapong login
+        self.client.login(username="kitsanapong", password="kpassword")
+        chatname = Chatroomname.objects.create(name='kitsanapong' + 'pasakorn')
+        chatname.save()
+        chatnamer = Chatroomname.objects.get(name='kitsanapong' + 'pasakorn')
+        human.objects.get(name='kitsanapong').chatroomname.add(chatnamer)
+        human.objects.get(name='pasakorn').chatroomname.add(chatnamer)
+        firstwm = Wantmatch.objects.create(name='pasakorn')
+        kitsanapongh.wantmatch.add(firstwm)
+
+        allwmfork=human.objects.get(name='kitsanapong').wantmatch.filter(name='pasakorn')
+        self.assertEqual(allwmfork.count(), 1)
+        human.objects.get(name='kitsanapong').wantmatch.add(firstwm)
+
+        self.client.post(f'/declinematch/{pasakornh.name}')
+        allwmfork = human.objects.get(name='kitsanapong').wantmatch.filter(name='pasakorn')
+        self.assertEqual(allwmfork.count(),0)
