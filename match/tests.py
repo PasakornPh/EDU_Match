@@ -58,6 +58,42 @@ class SignUpPageTests(TestCase):
         users = User.objects.all()
         self.assertEqual(users.count(), 1)
 
+
+class ProfilePageTests(TestCase):
+
+    def test_profile_page_url(self):
+        self.user1 = User.objects.create_user(username='testuser',
+                                              first_name='firstname',
+                                              password='Password12345',
+                                              email='test@example.com')
+        self.user1.save()
+        self.client.login(username='testuser', password='Password12345')
+
+        found = resolve("/profile/")
+        self.assertEqual(found.func, ProfileView)
+
+    def test_profile_url_resolve_to_profile_view(self):
+        found = resolve("/profile/")
+        self.assertEqual(found.func, ProfileView)
+
+    def test_profile_form(self):
+        self.user1 = User.objects.create_user(username='testuser',
+                                              first_name='firstname',
+                                              password='Password12345',
+                                              email='test@example.com')
+        self.user1.save()
+        self.client.login(username='testuser', password='Password12345')
+
+        response = self.client.post("/profile/", {
+            'first_name': 'Pasakorn',
+            'email': 'test@example.com',
+        })
+
+        users = User.objects.filter(username='testuser').first()
+        #print(users.first_name)
+
+        self.assertEqual('Pasakorn', users.first_name)
+
 class Addsubject(TestCase):
     def test_add_subject(self):
         User.objects.create_user(username='kitsanapong', password='kpassword')
