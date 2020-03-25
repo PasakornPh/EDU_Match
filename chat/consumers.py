@@ -47,6 +47,6 @@ class ChatConsumer(WebsocketConsumer):
         Chat.chatlo += message + '\n'
         Chat.save()
         # Send message to WebSocket
-        self.send(text_data=json.dumps({
+        async_to_sync(self.channel_layer.group_send)(self.send(text_data=json.dumps({
             'message': message
-        }))
+        })))
