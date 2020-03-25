@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse, resolve
 from match.views import *
-from match.models import human, Subject, Wantmatch, Review, Matched, Chatroomname, Tutor, Student
+from match.models import human, Subject, Wantmatch, Review, Matched, Chatroomname, Tutor, Student,chatlog
 
 
 class HomePageTest(TestCase):
@@ -318,3 +318,8 @@ class ReviewtTest(TestCase):
         self.assertEqual(totalreview.count(), 2)
         self.assertEqual(totalreview[0].message, 'Your teaching is so good.')
         self.assertEqual(totalreview[1].message, 'You are so cool.')
+
+class ChattingTest(TestCase):
+    def test_chatroom_template(self):
+        response = self.client.post('/chat/roomtest/')
+        self.assertTemplateUsed(response, template_name='chat/room.html')
