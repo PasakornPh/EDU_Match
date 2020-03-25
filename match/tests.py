@@ -323,3 +323,15 @@ class ChattingTest(TestCase):
     def test_chatroom_template(self):
         response = self.client.post('/chat/roomtest/')
         self.assertTemplateUsed(response, template_name='chat/room.html')
+
+    def test_chatlog_db(self):
+        test_room = chatlog.objects.create(chatroom='room1')
+        test_chatlog = 'Example_Chatlog_1'
+        test_room.chatlo = test_chatlog
+        test_room.save()
+
+        all_user = chatlog.objects.all()
+        roomtest1 = all_user[0]
+
+        self.assertEqual(all_user.count(), 1)
+        self.assertEqual(roomtest1.chatlo, 'Example_Chatlog_1')
