@@ -4,7 +4,22 @@
 
 {% block content %}
 
+<style>
+        div.text {
+          padding-left: 50px;
 
+        }
+
+        body {
+          background-image: url("{% url 'home' %}media/pic/right.png");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: right;
+          background-size: 350px 800px;
+        }
+</style>
+<div class="text">
+    <br>
     <h2>{{ username }}'s profile</h2>
     <form method="post">
         <div class="content-section">
@@ -29,8 +44,8 @@
         </div>
         </div>
     </div>
-
     </form>
+</div>
 <br><br>
 
 <div class="container">
