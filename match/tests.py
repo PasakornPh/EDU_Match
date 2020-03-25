@@ -1,4 +1,3 @@
-from django.http import request
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -110,7 +109,7 @@ class RequestTest(TestCase):
         eric = human.objects.create(name='eric01')
         eric.subject.add(eric_subject)
         self.client.login(username="johnny01",password="johnnypassword")
-        self.client.post(reverse('matching', args=['johnny01']))
+        self.client.post(f'/{ eric.name } /matching/')
         self.client.post(f'/matching/{ stefanie.name }/')
         print(reverse('matching', args=['johnny01']))
 

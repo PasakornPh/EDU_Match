@@ -41,6 +41,7 @@ def SignUpView(request):
             form.save()
             username_signup = form.cleaned_data.get('username')
             messages.success(request,f'Account created for { username_signup }!')
+
             return redirect('login')
     else:
         form = SignUpForm()
