@@ -594,3 +594,6 @@ def clean_model(request):
 
 def change_password_done(request):
     return render(request, 'registration/change_password_done.html')
+
+def help_app(request):
+    return render(request, 'help.html')

@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="116e4d56-e0ca-45fe-847b-1ae4d66208f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/match/templates/help.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/Friend_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/Friend_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/other_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/other_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match/templates/recieve_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/recieve_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/match/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/match/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585114891691</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Add background in see tutor profile , recieve profile , friend profile">
+      <created>1585115933401</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1585115933401</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +287,8 @@
     <MESSAGE value="Edit position star vote" />
     <MESSAGE value="Add picture in about app and about group page" />
     <MESSAGE value="Edit Sign-up , Friend match and Friend request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit Sign-up , Friend match and Friend request" />
+    <MESSAGE value="Add background in see tutor profile , recieve profile , friend profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add background in see tutor profile , recieve profile , friend profile" />
   </component>
   <component name="WindowStateProjectService">
     <state x="693" y="275" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585065729033">
@@ -287,11 +296,11 @@
     </state>
     <state x="478" y="211" width="378" height="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1325.741@0.27.1325.741" timestamp="1581873852939" />
     <state x="693" y="275" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1000@0.27.1920.1000" timestamp="1585065729033" />
-    <state x="277" y="52" width="754" height="741" key="CommitChangelistDialog2" timestamp="1585114891540">
+    <state x="266" y="27" width="754" height="741" key="CommitChangelistDialog2" timestamp="1585115933337">
       <screen x="0" y="27" width="1366" height="702" />
     </state>
     <state x="269" y="27" width="754" height="741" key="CommitChangelistDialog2/0.27.1325.741@0.27.1325.741" timestamp="1581883074652" />
-    <state x="277" y="52" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1585114891540" />
+    <state x="266" y="27" width="777" height="657" key="CommitChangelistDialog2/0.27.1366.702@0.27.1366.702" timestamp="1585115933337" />
     <state x="625" y="61" width="777" height="807" key="CommitChangelistDialog2/0.27.1920.1000@0.27.1920.1000" timestamp="1580673952836" />
     <state x="466" y="135" width="468" height="518" key="FileChooserDialogImpl" timestamp="1585114674090">
       <screen x="0" y="27" width="1366" height="702" />
@@ -322,6 +331,10 @@
       <screen x="0" y="27" width="1325" height="741" />
     </state>
     <state width="332" height="478" key="HiddenNamespacesPopup/0.27.1325.741@0.27.1325.741" timestamp="1581901729579" />
+    <state x="459" y="69" width="438" height="615" key="RollbackChangesDialog" timestamp="1585118756557">
+      <screen x="0" y="27" width="1366" height="702" />
+    </state>
+    <state x="459" y="69" width="438" height="615" key="RollbackChangesDialog/0.27.1366.702@0.27.1366.702" timestamp="1585118756557" />
     <state x="0" y="27" width="1325" height="741" key="SettingsEditor" timestamp="1582770406154">
       <screen x="0" y="27" width="1325" height="741" />
     </state>
