@@ -87,7 +87,39 @@ class ChangePasswordTest(TestCase):
 
         hash_password2 = users.password
         self.assertNotEquals(hash_password1,hash_password2)
-
+class Addsubject(TestCase):
+    def test_add_subject(self):
+        User.objects.create_user(username='kitsanapong', password='kpassword')
+        User.objects.create_user(username='pasakorn', password='mpassword')
+        User.objects.create_user(username='detmon123', password='ohmpassword')
+        self.client.login(username="kitsanapong", password="kpassword")
+        allsubject = Subject.objects.all()
+        self.assertEqual(allsubject.count(), 0)
+        self.client.post(f'/add_subject/',{'item_subject':'mathematic'})
+        allsubject=Subject.objects.all()
+        self.assertEqual(allsubject.count(), 1)
+class SearchTest(TestCase):
+    def test_search_subject(self):
+        User.objects.create_user(username='kitsanapong', password='kpassword')
+        User.objects.create_user(username='pasakorn', password='mpassword')
+        User.objects.create_user(username='detmon123', password='ohmpassword')
+        kitsanapongh = human.objects.create(name='kitsanapong')
+        pasakornh = human.objects.create(name='pasakorn')
+        detmonh = human.objects.create(name='detmon123')
+        # kitsanapong login
+        chatname = Chatroomname.objects.create(name='kitsanapong' + 'pasakorn')
+        chatname.save()
+        chatnamer = Chatroomname.objects.get(name='kitsanapong' + 'pasakorn')
+        human.objects.get(name='kitsanapong').chatroomname.add(chatnamer)
+        human.objects.get(name='pasakorn').chatroomname.add(chatnamer)
+        self.client.login(username="kitsanapong", password="kpassword")
+        physic=Subject.objects.create(name='physic')
+        pasakornh.subject.add(physic)
+        biology=Subject.objects.create(name='biology')
+        detmonh.subject.add(biology)
+        useraddphy=self.client.post(f'/write_review/{pasakornh.name}',{'item_subject2': 'physic'})
+        self.assertContains(useraddphy, 'pasakorn')
+        self.assertNotContains(useraddphy, 'detmon123')
 
 class RequestTest(TestCase):
 
