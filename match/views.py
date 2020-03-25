@@ -325,7 +325,7 @@ def unmatching(request, name):
     # User1= human.objects.get(pk=1).delete()
     User2 = get_object_or_404(human, name=name)
     selected_unmatch = User2.wantmatch.get(name=request.user.username)
-    selected_unmatch.delete()
+    User2.wantmatch.remove(selected_unmatch)
 
     User2 = ''
     for i in User1.chatroomname.all():
@@ -431,18 +431,18 @@ def unfriendmatched(request,name):
     myself = get_object_or_404(human, name=request.user.username)
     if myself.student.filter(name=name).exists():
         Selunmatched=myself.student.get(name=name)
-        Selunmatched.delete()
+        myself.student.remove(Selunmatched)
     if myself.tutor.filter(name=name).exists():
         Selunmatched2=myself.tutor.get(name=name)
-        Selunmatched2.delete()
+        myself.tutor.remove(Selunmatched2)
 
     User2 = get_object_or_404(human, name=name)
     if User2.tutor.filter(name=request.user.username).exists():
         Selunmatched3=User2.tutor.get(name=request.user.username)
-        Selunmatched3.delete()
+        User2.tutor.remove(Selunmatched3)
     if User2.student.filter(name=request.user.username).exists():
         Selunmatched4=User2.student.get(name=request.user.username)
-        Selunmatched4.delete()
+        User2.student.remove(Selunmatched4)
 
 
 
@@ -464,7 +464,7 @@ def acceptmatch(request,name):
     tutorself = get_object_or_404(human, name=request.user.username)
     studentself = get_object_or_404(human, name=name)
     selected_unmatch = tutorself.wantmatch.get(name=name)
-    selected_unmatch.delete()
+    tutorself.wantmatch.remove(selected_unmatch)
     if not Student.objects.filter(name=name).exists():
         student = Student(name=name)
         student.save()
@@ -489,7 +489,7 @@ def declinematch(request,name):
     # User1= human.objects.get(pk=1).delete()
     User2 = get_object_or_404(human, name=request.user.username)
     selected_unmatch = User2.wantmatch.get(name=name)
-    selected_unmatch.delete()
+    User2.wantmatch.remove(selected_unmatch)
     Nosent = "No one sent you a matching"
     User1 = human.objects.get(name=request.user.username)
     if User1.wantmatch.all():

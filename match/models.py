@@ -37,7 +37,6 @@ class Matched(models.Model):
 class Tutor(models.Model):
 
     name = models.CharField(max_length=300)
-
     def __str__(self):
         return self.name
 class Student(models.Model):
@@ -49,7 +48,7 @@ class Student(models.Model):
 
 class chatlog(models.Model):
     chatroom=models.CharField(max_length=300)
-    chatlo=models.CharField(max_length=30000)
+    chatlo=models.CharField(max_length=30000000)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
