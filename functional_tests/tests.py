@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
+import time,unittest
 from django.test import LiveServerTestCase
 
 class NewVisitorTest(LiveServerTestCase):
@@ -354,3 +354,125 @@ def test_to_review(self):
 #        deletebutton = self.browser.find_element_by_id('id_delete_subject')
 #        deletebutton.send_keys(Keys.ENTER)
 
+'''class ChattingTest(unittest.TestCase):
+    def setUp(self):
+        self.browser1 = webdriver.Firefox()
+        self.browser2 = webdriver.Chrome()
+
+    def tearDown(self):
+        self.browser1.quit()
+        self.browser2.quit()
+
+    def test_user_can_chatting(self):
+        # Somsak login to EDU-Match for chatting
+        self.browser1.get('http://127.0.0.1:8000/accounts/login/')
+        self.assertIn('Login', self.browser1.title)
+        inputusername_login_user1 = self.browser1.find_element_by_id('id_username')
+        inputusername_login_user1.send_keys('somsak112')
+        inputpassword_user1 = self.browser1.find_element_by_id('id_password')
+        inputpassword_user1.send_keys('sm123456')
+        inputpassword_user1.send_keys(Keys.ENTER)
+        time.sleep(2)
+        # He going to chat room for chat with Manop tutor
+
+        self.browser1.get('http://127.0.0.1:8000/chat/Testroom8/')
+        #self.browser1.get('http://127.0.0.1:8000/chat/somsak112manop_55/')
+        time.sleep(2)
+
+        # Manop login to EDU-Match for chatting
+        self.browser2.get('http://127.0.0.1:8000/accounts/login/')
+        self.assertIn('Login', self.browser2.title)
+        inputusername_login_user2 = self.browser2.find_element_by_id('id_username')
+        inputusername_login_user2.send_keys('manop_55')
+        inputpassword_user2 = self.browser2.find_element_by_id('id_password')
+        inputpassword_user2.send_keys('mn123456')
+        time.sleep(3)
+        inputpassword_user2.send_keys(Keys.ENTER)
+        time.sleep(3)
+        # Manop going to chat room for chat with Somsak student
+        self.browser2.get('http://127.0.0.1:8000/chat/Testroom8/')
+        #self.browser2.get('http://127.0.0.1:8000/chat/somsak112manop_55/')
+        time.sleep(2)
+
+        # Somsak and Manop See the chat log
+        chatbox = self.browser1.find_element_by_id('chat-log')
+        chatbox2 = self.browser2.find_element_by_id('chat-log')
+
+        # # Somsak and Manop See the chat  textbox
+        chat_textbox = self.browser1.find_element_by_id('chat-message-input')
+        self.assertIn(
+            chat_textbox.get_attribute('type'),
+            'text'
+        )
+        chat_textbox2 = self.browser2.find_element_by_id('chat-message-input')
+        self.assertIn(
+            chat_textbox2.get_attribute('type'),
+            'text'
+        )
+
+        # Manop and Somsak notices the send button
+        send_button = self.browser1.find_element_by_id('chat-message-submit')
+        self.assertIn(
+            send_button.get_attribute('type'),
+            'button'
+        )
+        send_button2 = self.browser2.find_element_by_id('chat-message-submit')
+        self.assertIn(
+            send_button2.get_attribute('type'),
+            'button'
+        )
+
+        # Manop types message "hello"
+        chat_textbox2.send_keys('hello')
+        time.sleep(2)
+
+        # Manop clicks the send button.
+        send_button2.click()
+        time.sleep(2)
+
+        # Manop notices his message is send in textarea
+        self.assertIn(
+            chatbox2.get_attribute('value'),
+            '\t\t\t\t\t\t\t\t\tmanop_55 :hello\n'
+        )
+
+        # Manop types message "Hi"
+        chat_textbox2.send_keys('How are you? Somsak')
+        time.sleep(2)
+
+        # Manop clicks the send button.
+        send_button2.click()
+        time.sleep(2)
+
+        # Manop notices his message is send in textarea
+        self.assertIn(
+            chatbox2.get_attribute('value'),
+            '\t\t\t\t\t\t\t\t\tmanop_55 :hello\n\t\t\t\t\t\t\t\t\tmanop_55 :How are you? Somsak\n'
+
+        )
+
+
+
+        # Somsak notices manop message  in textarea
+        self.assertIn(
+            chatbox.get_attribute('value'),
+            'manop_55 :hello\nmanop_55 :How are you? Somsak\n'
+        )
+
+        # somsak types message "i'm fine"
+        chat_textbox.send_keys('im fine')
+        time.sleep(2)
+
+        # Manop clicks the send button.
+        send_button.click()
+        time.sleep(2)
+
+        # somsak notices his message is send in textarea
+        self.assertIn(
+            chatbox.get_attribute('value'),
+            'manop_55 :hello\nmanop_55 :How are you? Somsak\n\t\t\t\t\t\t\t\t\tsomsak112 :im fine\n'
+        )
+
+
+
+        time.sleep(3)'''
