@@ -1,20 +1,44 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}EDU-MATCH{% endblock %}
+
+{% block content %}
+<style>
+        body {
+          background-image: url("{% url 'home' %}media/pic/left.png"),url("{% url 'home' %}media/pic/right.png");
+          background-repeat: no-repeat,no-repeat;
+          background-attachment: fixed,fixed;
+          background-position: left,right;
+          background-size: 350px 630px,350px 800px;
+        }
+    </style>
+<center>
 <body>
+
+    <div class="container">
+  <div class="row">
+      <div class="comments" style="padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); ">
+          <div class="card-body">
+   <label id="User" style="font-size: 30px" class="font-weight-bold " >Login as : </label> <label style="font-size: 30px" class="font-weight-bold"id="user_name">{{user.username}}</label>
+   <label id="UserSelf" style="font-size: 30px" class="font-weight-bold"> >>> Status : </label>  <label style="font-size: 30px" id="self_status"class="font-weight-bold"></label><br/>
+
+   
+
     <textarea id="chat-log" cols="100" rows="20">{{ old_message }}</textarea><br/>
 
     <input id="chat-message-input" type="text" size="100"/><br/>
+              <br/>
+    <button id="chat-message-submit" type="button" value="Send" class="btn btn-secondary btn-sm btn-block   "> Send </button>
 
-    <input id="chat-message-submit" type="button" value="Send"/>
+          </div></div></div></div>
 </body>
 <script>
+    var x = navigator.onLine;
+    if (x == true){ document.getElementById("self_status").innerHTML = 'Online';}
+    else{ document.getElementById("self_status").innerHTML = 'Offline';}
+
     var roomName = "{{ room_name|escapejs }}";
-    var wss_protocol = (window.location.protocol == 'https:') ? 'wss://' : 'ws://';
+    var wss_protocol =(window.location.protocol == 'https:')? 'wss://' :'ws://';
     var chatSocket = new WebSocket(
         wss_protocol + window.location.host +
         '/ws/chat/' + roomName + '/');
@@ -23,7 +47,7 @@
         var data = JSON.parse(e.data);
         var message = data['message'];
         if(message.includes('{{user.username}}') )
-        {document.querySelector('#chat-log').value += ('\t\t\t\t\t\t\t\t\t'+message + '\n');}
+        {document.querySelector('#chat-log').value += ('\t\t\t\t\t\t\t\t\t\t\t\t\t\t'+message + '\n');}
         else{document.querySelector('#chat-log').value += (message + '\n');}
     };
 
@@ -49,4 +73,5 @@
     };
 
 </script>
-</html>
+</center>
+{% endblock %}
