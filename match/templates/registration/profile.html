@@ -37,4 +37,128 @@ body {
         </div>
     </div>
 
+<br>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="comments" style="padding: 10px;">
+          <div class="card-body">
+<h3 class="font-weight-bold">Review</h3>
+              <div class="comments" style="padding: 5px;">
+              <p class="font-weight-bold"> total review score </p>
+                  {% if meanstar == 0 %}
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 1 %}
+
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 2 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 3 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 4 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if meanstar == 5 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>{% endif %}
+                  <p > User rating:{% if usercomall %} {{ usercomall.count }}{% else %} 0 {% endif %}  </p>
+              </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div class="comments" style="padding: 5px;">
+          <div class="card-body">
+{% if usercomall %}
+{% for review in usercomall %}
+{% csrf_token %}
+
+<tr><td> <div class="container">
+
+  <div class="row">
+      <div class="comments" style="padding: 10px;">
+          <div class="card-body">
+          - <b>{{ review.realname }}</b> :
+    {% if review.star == 0 %}
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if review.star == 1 %}
+
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if review.star == 2 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if review.star == 3 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if review.star == 4 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star normal"></span>{% endif %}
+    {% if review.star == 5 %}
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>{% endif %}
+
+    <br> messege : {{ review.message }}
+</div>
+    </div>
+  </div>
+    </div>
+</td></tr>
+              <br>
+{% endfor %}
+{% endif %}
+
+{% if Nocomment %}
+No one comment here.
+{% endif %}
+
+          </div>
+      </div>
+  </div>
+</div>
 {% endblock content %}

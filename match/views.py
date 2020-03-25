@@ -62,8 +62,14 @@ def ProfileView(request):
     else:
         form_class = ProfileForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-
-    context = {'form_class' : form_class, 'p_form' : p_form }
+    User1=human.objects.get(name=request.user.username)
+    meanstar = 0
+    usercommall = Review.objects.filter(post=User1)
+    if usercommall.count() > 0:
+        for i in usercommall:
+            meanstar += i.star
+        meanstar = meanstar // usercommall.count()
+    context = {'form_class' : form_class, 'p_form' : p_form ,'usercomall':usercommall,'meanstar':meanstar}
     return render(request,'registration/profile.html',context)
 
 #class ProfileView(UpdateView):
