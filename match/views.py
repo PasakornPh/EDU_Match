@@ -110,13 +110,16 @@ def friendprofile(request,name):
     username = Selecteduser.username
 
     User1 = human.objects.get(name=name)
-    if not Chatroomname.objects.filter(name=Selecteduser.username+request.user.username).exists():
-
-        chatname=Chatroomname.objects.create(name=Selecteduser.username+request.user.username)
+    sorted = [str(Selecteduser.username), str(request.user.username)]
+    sorted.sort()
+    print(sorted[0])
+    print(sorted[1])
+    if not Chatroomname.objects.filter(name=sorted[0] + sorted[1]).exists():
+        chatname = Chatroomname.objects.create(name=sorted[0] + sorted[1])
         chatname.save()
-    chatnamer=Chatroomname.objects.get(name=Selecteduser.username+request.user.username)
-    human.objects.get(name=name).chatroomname.add(chatnamer)
-    human.objects.get(name=request.user.username).chatroomname.add(chatnamer)
+        chatnamer = Chatroomname.objects.get(name=sorted[0] + sorted[1])
+        human.objects.get(name=sorted[0]).chatroomname.add(chatnamer)
+        human.objects.get(name=sorted[1]).chatroomname.add(chatnamer)
     User2=''
     for i in User1.chatroomname.all():
         if (request.user.username in i.name ) and (name in i.name):
