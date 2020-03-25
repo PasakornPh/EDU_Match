@@ -191,3 +191,33 @@ class RequestTest(TestCase):
         self.client.post(f'/declinematch/{pasakornh.name}')
         allwmfork = human.objects.get(name='kitsanapong').wantmatch.filter(name='pasakorn')
         self.assertEqual(allwmfork.count(),0)
+
+    def test_unmatched(self):
+        User.objects.create_user(username='kitsanapong', password='kpassword')
+        User.objects.create_user(username='pasakorn', password='mpassword')
+        pasakornh = human.objects.create(name='pasakorn')
+        kitsanapongh = human.objects.create(name='kitsanapong')
+
+        # kitsanapong login
+        self.client.login(username="kitsanapong", password="kpassword")
+        chatname = Chatroomname.objects.create(name='kitsanapong' + 'pasakorn')
+        chatname.save()
+        chatnamer = Chatroomname.objects.get(name='kitsanapong' + 'pasakorn')
+        human.objects.get(name='kitsanapong').chatroomname.add(chatnamer)
+        human.objects.get(name='pasakorn').chatroomname.add(chatnamer)
+        stfirst = Student.objects.create(name='pasakorn')
+        kitsanapongh.student.add(stfirst)
+        ttfirst = Tutor.objects.create(name='kitsanapong')
+        pasakornh.tutor.add(ttfirst)
+
+        allstfork = human.objects.get(name='kitsanapong').student.filter(name='pasakorn')
+        self.assertEqual(allstfork.count(), 1)
+        allttforp = human.objects.get(name='pasakorn').tutor.filter(name='kitsanapong')
+        self.assertEqual(allttforp.count(), 1)
+
+        self.client.post(f'/unmatched/{pasakornh.name}')
+        allstfork = human.objects.get(name='kitsanapong').student.filter(name='pasakorn')
+        self.assertEqual(allstfork.count(), 0)
+        allttforp = human.objects.get(name='pasakorn').tutor.filter(name='kitsanapong')
+        self.assertEqual(allttforp.count(), 0)
+
